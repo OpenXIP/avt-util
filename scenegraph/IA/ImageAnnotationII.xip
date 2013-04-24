@@ -1,0 +1,4219 @@
+#Inventor V2.1 ascii
+
+### 0 ###
+SoXipBuilderNode {
+    placement	1.2 9.3 3.2 10.1
+    flags	()
+    autoPanelPos	82 100 0 0
+    node	    Separator {
+    }
+
+}
+#addChild "0" "1"
+
+### 1 ###
+SoXipBuilderNode {
+    placement	0.800541 7.8 3.42017 8.6
+    flags	()
+    autoPanelPos	966 28 0 0
+    node	    DEF Viewport_Layout SoXipViewportGroup {
+	fields [ SFBool activateOnClick, MFVec4f viewports, SFInt32 current,  ]
+	activateOnClick	FALSE
+	viewports	[ 0 0 0.5 0.5,
+			  0 0.5 0.5 0.5,
+			  0.5 0.5 0.5 0.5,
+			  0.5 0 0.5 0.5 ]
+	current	1
+    }
+
+}
+#addChild "1" "2 196 206 216"
+
+### 2 ###
+SoXipBuilderNode {
+    placement	2.4 12.6 4.4 13.4
+    flags	()
+    node	    Separator {
+    }
+
+}
+#addChild "2" "3 112 188"
+
+### 3 ###
+SoXipBuilderNode {
+    placement	3.6 9.6 7.2 10.4
+    flags	()
+    autoPanelPos	384 384 0 0
+    node	    Separator {
+    }
+
+}
+#addChild "3" "4 38 39 53 54 55 84 98"
+
+### 4 ###
+SoXipBuilderNode {
+    placement	-6.6 4.2 -4.6 5
+    flags	()
+    node	    Group {
+    }
+
+}
+#addChild "4" "5 17 22"
+
+### 5 ###
+SoXipBuilderNode {
+    placement	-1.2 1.8 0.799998 2.6
+    flags	()
+    autoPanelPos	314 498 0 0
+    node	    SoXipMprPlane {
+	fields [ SFMatrix plane, SFVec3f center, SFColor color, SFInt32 id,
+		 ]
+	plane	1 -6.50187e-008 2.92721e-008 0
+		-2.9272e-008 1.04575e-006 1 0
+		-6.50187e-008 -1 1.04575e-006 0
+		0.5 0.5 0.5 1
+	center	0.5 0.5 0.5
+	color	0 0 1
+	id	2
+    }
+
+}
+#connect "center@5" "vector@6"
+#connect "stepSize@5" "oa@10"
+
+### 6 ###
+SoXipBuilderEngine {
+    placement	-1.2 -2.4 0.8 -1.6
+    flags	()
+    autoPanelPos	1300 639 0 0
+    engine	    ComposeVec3f {
+	x	0.5
+	y	0.5
+	z	0.5
+    }
+
+}
+#connect "x@6" "x@7"
+#connect "y@6" "y@8"
+#connect "z@6" "z@7"
+
+### 7 ###
+SoXipBuilderEngine {
+    placement	-1.2 -1.5 0.8 -0.7
+    flags	()
+    autoPanelPos	719 588 0 0
+    engine	    DecomposeVec3f {
+	vector	0.5 0.5 0.5
+    }
+
+}
+#connect "vector@7" "center@5"
+
+### 8 ###
+SoXipBuilderEngine {
+    placement	-1.2 -0.6 0.799999 0.2
+    flags	()
+    autoPanelPos	738 420 0 0
+    engine	    DecomposeVec3f {
+	vector	0.5 0.5 0.5
+    }
+
+}
+#connect "vector@8" "translation@9"
+
+### 9 ###
+SoXipBuilderEngine {
+    placement	-1.2 0.6 0.988437 1.4
+    flags	()
+    autoPanelPos	1226 217 0 0
+    engine	    DecomposeMatrix {
+	matrix	1 -6.50187e-008 2.92721e-008 0
+		-2.9272e-008 1.04575e-006 1 0
+		-6.50187e-008 -1 1.04575e-006 0
+		0.5 0.5 0.5 1
+    }
+
+}
+#connect "matrix@9" "plane@5"
+
+### 10 ###
+SoXipBuilderEngine {
+    placement	-10.2 1.8 -8.2 2.6
+    flags	()
+    autoPanelPos	866 20 0 0
+    engine	    Calculator {
+	d	0.5
+	expression	"oa = 1.0 / a; ob = 1.0 / b; oc = 1.0 / c; od = c * (1.0 - d) + 1;"
+    }
+
+}
+#connect "a@10" "width@11"
+#connect "b@10" "height@11"
+#connect "c@10" "depth@11"
+#connect "d@10" "z@15"
+
+### 11 ###
+SoXipBuilderEngine {
+    placement	-4.02231 -3.3 -1.29532 -2.5
+    flags	()
+    autoPanelPos	449 438 0 0
+    engine	    SoXipImageAttributes {
+	inputs [  ]
+	outputs [ SFMatrix modelMatrix, SFShort width, SFShort height, SFShort depth,
+		SFShort bitsStored, SFMatrix defaultOrientation, SFShort orthoScanOrientation, SFMatrix orthoOrientation1,
+		SFMatrix orthoOrientation2, SFMatrix orthoOrientation3, SFVec3f defaultCenter ]
+    }
+
+}
+#connect "image@11" "output@12"
+
+### 12 ###
+SoXipBuilderEngine {
+    placement	-0.681305 -3.3 1.71698 -2.5
+    flags	()
+    autoPanelPos	614 525 0 0
+    engine	    SoXipVolumeDicom {
+	inputs [ SoXipMFDataDicom input ]
+	input	[  ]
+	outputs [ SoXipSFDataImage output ]
+    }
+
+}
+#connect "input@12" "output@13"
+
+### 13 ###
+SoXipBuilderEngine {
+    placement	-0.6 -5.4 1.4 -4.6
+    flags	()
+    autoPanelPos	378 724 0 0
+    engine	    SoXipSortDicom {
+	inputs [ SoXipMFDataDicom input ]
+	input	[  ]
+	outputs [ SoXipMFDataDicom output ]
+    }
+
+}
+#connect "input@13" "dicom@14"
+
+### 14 ###
+SoXipBuilderEngine {
+    placement	-3.9 -8.7 -1.9 -7.9
+    flags	()
+    autoPanelPos	194 673 0 0
+    engine	    DEF LoadDicom SoXipLoadDicom {
+	inputs [  ]
+	outputs [ SoXipMFDataDicom dicom ]
+    }
+
+}
+
+### 15 ###
+SoXipBuilderEngine {
+    placement	-13.5 0 -11.4956 0.8
+    flags	()
+    autoPanelPos	126 561 0 0
+    engine	    DecomposeVec3f {
+	vector	0.5 0.5 0.5
+    }
+
+}
+#connect "vector@15" "translation@16"
+
+### 16 ###
+SoXipBuilderEngine {
+    placement	-10.5 -0.3 -8.31156 0.5
+    flags	()
+    autoPanelPos	350 346 0 0
+    engine	    DecomposeMatrix {
+	matrix	1 0 0 0
+		0 -1 -8.74228e-008 0
+		0 8.74228e-008 -1 0
+		0.5 0.5 0.5 1
+    }
+
+}
+#connect "matrix@16" "plane@22"
+
+### 17 ###
+SoXipBuilderNode {
+    placement	-3.9 1.8 -1.9 2.6
+    flags	()
+    autoPanelPos	86 448 0 0
+    node	    SoXipMprPlane {
+	fields [ SFMatrix plane, SFVec3f center, SFColor color, SFInt32 id,
+		 ]
+	plane	1.78814e-007 1 8.9407e-008 0
+		2.98023e-008 -5.96047e-008 1 0
+		1 -1.49012e-007 -1.42109e-014 0
+		0.5 0.5 0.5 1
+	center	0.5 0.5 0.5
+	color	0 1 0
+	id	1
+    }
+
+}
+#connect "center@17" "vector@18"
+#connect "stepSize@17" "ob@10"
+
+### 18 ###
+SoXipBuilderEngine {
+    placement	-3.9 -2.4 -1.9 -1.6
+    flags	()
+    autoPanelPos	705 668 0 0
+    engine	    ComposeVec3f {
+	x	0.5
+	y	0.5
+	z	0.5
+    }
+
+}
+#connect "x@18" "x@19"
+#connect "y@18" "y@21"
+#connect "z@18" "z@21"
+
+### 19 ###
+SoXipBuilderEngine {
+    placement	-3.9 -0.6 -1.9 0.2
+    flags	()
+    autoPanelPos	425 592 0 0
+    engine	    DecomposeVec3f {
+	vector	0.5 0.5 0.5
+    }
+
+}
+#connect "vector@19" "translation@20"
+
+### 20 ###
+SoXipBuilderEngine {
+    placement	-3.9 0.6 -1.71156 1.4
+    flags	()
+    autoPanelPos	541 182 0 0
+    engine	    DecomposeMatrix {
+	matrix	1.78814e-007 1 8.9407e-008 0
+		2.98023e-008 -5.96047e-008 1 0
+		1 -1.49012e-007 -1.42109e-014 0
+		0.5 0.5 0.5 1
+    }
+
+}
+#connect "matrix@20" "plane@17"
+
+### 21 ###
+SoXipBuilderEngine {
+    placement	-3.9 -1.5 -1.9 -0.7
+    flags	()
+    autoPanelPos	1105 672 0 0
+    engine	    DecomposeVec3f {
+	vector	0.5 0.5 0.5
+    }
+
+}
+#connect "vector@21" "center@17"
+
+### 22 ###
+SoXipBuilderNode {
+    placement	-6.6 1.8 -4.6 2.6
+    flags	()
+    autoPanelPos	748 36 0 0
+    node	    DEF Axial_Plane SoXipMprPlane {
+	fields [ SFMatrix plane, SFVec3f center, SFColor color,  ]
+	plane	1 0 0 0
+		0 -1 -8.74228e-008 0
+		0 8.74228e-008 -1 0
+		0.5 0.5 0.5 1
+	center	0.5 0.5 0.5
+	color	1 0 0
+    }
+
+}
+#connect "plane@22" "output@23"
+#connect "center@22" "vector@36"
+#connect "stepSize@22" "oc@10"
+
+### 23 ###
+SoXipBuilderEngine {
+    placement	-6.6 -0.6 -4.6 0.2
+    flags	()
+    autoPanelPos	409 67 0 0
+    engine	    DEF Matrix_Import SelectOne {
+	type	"MFMatrix"
+	input	[ 1 0 0 0
+				0 1 0 0
+				0 0 1 0
+				0 0 0 1,
+			  1 0 0 0
+				0 1 0 0
+				0 0 1 0
+				0 0 0 1,
+			  1 0 0 0
+				0 1 0 0
+				0 0 1 0
+				0 0 0 1,
+			  1 0 0 0
+				0 -1 2.53518e-006 0
+				0 -2.53518e-006 -1 0
+				0.5 0.5 0 1,
+			  1 0 0 0
+				0 -1 2.53518e-006 0
+				0 -2.53518e-006 -1 0
+				0.5 0.5 0 1 ]
+    }
+
+}
+#connect "input@23" "output@24"
+
+### 24 ###
+SoXipBuilderEngine {
+    placement	-6.6 0.6 -4.6 1.4
+    flags	()
+    autoPanelPos	232 99 0 0
+    engine	    Concatenate {
+	type	"MFMatrix"
+	input0	1 0 0 0
+		0 1 0 0
+		0 0 1 0
+		0 0 0 1
+	input1	1 0 0 0
+		0 1 0 0
+		0 0 1 0
+		0 0 0 1
+	input2	1 0 0 0
+		0 1 0 0
+		0 0 1 0
+		0 0 0 1
+	input3	1 0 0 0
+		0 -1 2.53518e-006 0
+		0 -2.53518e-006 -1 0
+		0.5 0.5 0 1
+	input4	1 0 0 0
+		0 -1 2.53518e-006 0
+		0 -2.53518e-006 -1 0
+		0.5 0.5 0 1
+    }
+
+}
+#connect "input0@24" "plane@25"
+#connect "input1@24" "plane@26"
+#connect "input2@24" "plane@27"
+#connect "input3@24" "matrix@28"
+#connect "input4@24" "matrix@32"
+
+### 25 ###
+SoXipBuilderEngine {
+    placement	4.8 4.5 7.3182 5.3
+    flags	()
+    autoPanelPos	392 358 0 0
+    engine	    DEF RECIST_Import SoNormalizeImagePt {
+	inputs [ SoXipMFDataDicom refInput,  ]
+	refInput	[  ]
+	outputs [ MFVec3f coordinates, SFMatrix plane, SFBool status ]
+    }
+
+}
+#connect "refInput@25" "output@13"
+
+### 26 ###
+SoXipBuilderEngine {
+    placement	12.3 4.2 14.8182 5
+    flags	()
+    autoPanelPos	994 633 0 0
+    engine	    DEF WHO_Import SoNormalizeImagePt {
+	inputs [ SoXipMFDataDicom refInput,  ]
+	refInput	[  ]
+	outputs [ MFVec3f coordinates, SFMatrix plane, SFBool status ]
+    }
+
+}
+#connect "refInput@26" "output@13"
+
+### 27 ###
+SoXipBuilderEngine {
+    placement	10.8 -6 13.3182 -5.2
+    flags	()
+    autoPanelPos	1333 676 0 0
+    engine	    DEF QIBA_Image SoNormalizeImagePt {
+	inputs [ SoXipMFDataDicom refInput,  ]
+	refInput	[  ]
+	outputs [ MFVec3f coordinates, SFMatrix plane, SFBool status ]
+    }
+
+}
+#connect "refInput@27" "output@13"
+
+### 28 ###
+SoXipBuilderEngine {
+    placement	3 -0.6 5 0.2
+    flags	()
+    autoPanelPos	1127 40 0 0
+    engine	    DEF RECIST_Plane ComposeMatrix {
+	translation	0.5 0.5 0
+	rotation	1 0 0  3.14159
+    }
+
+}
+#connect "translation@28" "vector@29"
+
+### 29 ###
+SoXipBuilderEngine {
+    placement	5.4 -0.6 7.4 0.199999
+    flags	()
+    autoPanelPos	220 167 0 0
+    engine	    ComposeVec3f {
+	x	0.5
+	y	0.5
+    }
+
+}
+#connect "z@29" "z@30"
+
+### 30 ###
+SoXipBuilderEngine {
+    placement	7.8 -0.6 9.8 0.2
+    flags	()
+    autoPanelPos	397 218 0 0
+    engine	    DecomposeVec3f {
+    }
+
+}
+#connect "vector@30" "output@31"
+
+### 31 ###
+SoXipBuilderEngine {
+    placement	7.8 0.6 9.8 1.4
+    flags	()
+    autoPanelPos	554 120 0 0
+    engine	    SelectOne {
+	type	"MFVec3f"
+	index	0
+	input	[ 0 0 0,
+			  0 0 0 ]
+    }
+
+}
+#connect "input@31" "points@86"
+
+### 32 ###
+SoXipBuilderEngine {
+    placement	18 -0.3 20 0.5
+    flags	()
+    autoPanelPos	1250 250 0 0
+    engine	    DEF WHO_Plane ComposeMatrix {
+	translation	0.5 0.5 0
+	rotation	1 0 0  3.14159
+    }
+
+}
+#connect "translation@32" "vector@33"
+
+### 33 ###
+SoXipBuilderEngine {
+    placement	18 0.6 20 1.4
+    flags	()
+    autoPanelPos	220 167 0 0
+    engine	    ComposeVec3f {
+	x	0.5
+	y	0.5
+    }
+
+}
+#connect "z@33" "z@34"
+
+### 34 ###
+SoXipBuilderEngine {
+    placement	15.3 -0.3 17.3 0.5
+    flags	()
+    autoPanelPos	397 218 0 0
+    engine	    DecomposeVec3f {
+    }
+
+}
+#connect "vector@34" "output@35"
+
+### 35 ###
+SoXipBuilderEngine {
+    placement	15.3 0.6 17.3 1.4
+    flags	()
+    autoPanelPos	554 120 0 0
+    engine	    SelectOne {
+	type	"MFVec3f"
+	index	0
+	input	[ 0 0 0,
+			  0 0 0,
+			  0 0 0,
+			  0 0 0 ]
+    }
+
+}
+#connect "input@35" "points@100"
+
+### 36 ###
+SoXipBuilderEngine {
+    placement	-10.5 -2.7 -8.5 -1.9
+    flags	()
+    autoPanelPos	287 456 0 0
+    engine	    ComposeVec3f {
+	x	0.5
+	y	0.5
+	z	0.5
+    }
+
+}
+#connect "x@36" "x@37"
+#connect "y@36" "y@37"
+#connect "z@36" "z@15"
+
+### 37 ###
+SoXipBuilderEngine {
+    placement	-10.5 -1.5 -8.5 -0.7
+    flags	()
+    autoPanelPos	271 259 0 0
+    engine	    DecomposeVec3f {
+	vector	0.5 0.5 0.5
+    }
+
+}
+#connect "vector@37" "center@22"
+
+### 38 ###
+SoXipBuilderNode {
+    placement	-4.2 7.2 -1.87666 8
+    flags	()
+    autoPanelPos	214 137 0 0
+    node	    DEF Examiner_Axial SoXipMprExaminer {
+	intersection	INTERSECTION
+	border	TRUE
+	dogEar	TRUE
+	orientationCube	TRUE
+	camera		OrthographicCamera {
+	    position	0.5 0.5 0.539128
+	    orientation	1 -1.8521e-008 -3.69976e-010  3.14159
+	    nearDistance	-0.5
+	    farDistance	0.5
+	    focalDistance	0
+	    height	1
+	}
+
+	complexity		Complexity {
+	    value	0.5
+	    textureQuality	0.5
+	}
+
+	intersectionManip		SoXipMprIntersectionManip {
+	    fields [ SFBool on, SFEnum mode,  ]
+	    on	TRUE
+	    mode	INTERSECTION
+	}
+
+	borderNode		DEF +0 SoXipViewportBorder {
+	    fields [ SFColor activeColor, SFColor inactiveColor,  ]
+	    activeColor	1 0 0
+	    inactiveColor	1 0 0
+	}
+
+	dogEarNode		DEF +1 SoXipDogEar {
+	    fields [  ]
+	}
+
+	orientationNode		DEF +2 SoXipOrientationCube {
+	    fields [  ]
+	}
+
+	borderSwitch		Switch {
+	    whichChild	0
+	    USE +0
+	}
+
+	dogEarSwitch		Switch {
+	    whichChild	0
+	    USE +1
+	}
+
+	orientationSwitch		Switch {
+	    whichChild	0
+	    USE +2
+	}
+
+    }
+
+}
+
+### 39 ###
+SoXipBuilderNode {
+    placement	1.5 2.4 3.5 3.2
+    flags	()
+    autoPanelPos	0 0 0 0
+    node	    Group {
+    }
+
+}
+#addChild "39" "40 52"
+
+### 40 ###
+SoXipBuilderNode {
+    placement	0.9 0.6 3.93957 1.4
+    flags	()
+    autoPanelPos	1096 136 0 0
+    node	    DEF Dicom_WL SoXipWindowLevelManip {
+	fields [ SFEnum mouse, SFBool handleComplexity ]
+	mouse	BUTTON3
+	handleComplexity	TRUE
+    }
+
+}
+#connect "window@40" "output@41"
+#connect "level@40" "output@49"
+
+### 41 ###
+SoXipBuilderEngine {
+    placement	0.9 -0.6 2.9 0.199999
+    flags	()
+    autoPanelPos	287 167 0 0
+    engine	    DEF Window_Gate Gate {
+	type	"MFFloat"
+	input	1
+    }
+
+}
+#connect "input@41" "output@42"
+
+### 42 ###
+SoXipBuilderEngine {
+    placement	-1.5 -0.6 0.5 0.2
+    flags	()
+    autoPanelPos	584 138 0 0
+    engine	    DEF Dicom_Window SelectOne {
+	type	"MFFloat"
+	index	0
+	input	[ 1, 1500 ]
+    }
+
+}
+#connect "input@42" "output@43"
+
+### 43 ###
+SoXipBuilderEngine {
+    placement	-3.6 -0.6 -1.6 0.199999
+    flags	()
+    autoPanelPos	228 87 0 0
+    engine	    DEF Window Concatenate {
+	type	"MFFloat"
+	input0	1
+	input1	1500
+    }
+
+}
+#connect "input0@43" "window@44"
+#connect "input1@43" "oa@45"
+
+### 44 ###
+SoXipBuilderEngine {
+    placement	-3.08685 0.6 0.000945408 1.4
+    flags	()
+    autoPanelPos	143 370 0 0
+    engine	    SoXipDicomWindowLevel {
+	inputs [  ]
+	outputs [ SFFloat window, SFFloat level, SFShort bitsStored ]
+    }
+
+}
+#connect "input@44" "output@13"
+
+### 45 ###
+SoXipBuilderEngine {
+    placement	3.6 -0.9 5.6 -0.1
+    flags	()
+    autoPanelPos	1076 35 0 0
+    engine	    DEF Win_Level Calculator {
+	c	1
+	d	1500
+	e	-600
+	f	1
+	g	0.5
+	expression	"oa=d/(pow(2.0, a));ob=((e-b)/c)/(pow(2.0, a)); oc=f*(pow(2.0, a));od=b+g*c*(pow(2.0, a))"
+    }
+
+}
+#connect "a@45" "bitsStored@44"
+#connect "b@45" "output@46"
+#connect "f@45" "rampWidth@52"
+#connect "g@45" "rampCenter@52"
+
+### 46 ###
+SoXipBuilderEngine {
+    placement	-3.6 -5.1 -1.6 -4.3
+    flags	()
+    autoPanelPos	256 208 0 0
+    engine	    SoIAParseString {
+	inputs [  ]
+	outputs [ SFFloat output ]
+    }
+
+}
+#connect "string@46" "string@47"
+
+### 47 ###
+SoXipBuilderEngine {
+    placement	-6.6 -5.1 -4.08678 -4.3
+    flags	()
+    autoPanelPos	74 229 0 0
+    engine	    DEF Intercept SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x28
+	element	0x1052
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@47" "output@48"
+
+### 48 ###
+SoXipBuilderEngine {
+    placement	-10.892 -3.3 -7.62432 -2.5
+    flags	()
+    autoPanelPos	170 242 0 0
+    engine	    SoXipDecomposeMFDicom {
+	inputs [ SoXipMFDataDicom input, SFShort index ]
+	input	[  ]
+	index	0
+	outputs [ SoXipSFDataDicom output ]
+    }
+
+}
+#connect "input@48" "output@13"
+
+### 49 ###
+SoXipBuilderEngine {
+    placement	0.9 -1.5 2.9 -0.7
+    flags	()
+    autoPanelPos	828 554 0 0
+    engine	    DEF Level_Gate Gate {
+	type	"MFFloat"
+	input	0.5
+    }
+
+}
+#connect "input@49" "output@50"
+
+### 50 ###
+SoXipBuilderEngine {
+    placement	-1.5 -1.5 0.5 -0.7
+    flags	()
+    autoPanelPos	470 486 0 0
+    engine	    DEF Dicom_Level SelectOne {
+	type	"MFFloat"
+	index	0
+	input	[ 0.5, -600 ]
+    }
+
+}
+#connect "input@50" "output@51"
+
+### 51 ###
+SoXipBuilderEngine {
+    placement	-3.6 -1.5 -1.6 -0.699999
+    flags	()
+    autoPanelPos	274 298 0 0
+    engine	    DEF Level Concatenate {
+	type	"MFFloat"
+	input0	0.5
+	input1	-600
+    }
+
+}
+#connect "input0@51" "level@44"
+#connect "input1@51" "ob@45"
+
+### 52 ###
+SoXipBuilderNode {
+    placement	5.1 0.6 7.1 1.4
+    flags	()
+    autoPanelPos	527 146 0 0
+    node	    SoXipLut {
+	fields [ SFEnum inputMode, SFEnum alphaMode, SFFloat slopeCenter, SFInt32 fileEntries,
+		MFColor arrayColor, MFFloat arrayAlpha ]
+	inputMode	TRAPEZOID
+	alphaMode	CONSTANT
+	slopeCenter	0.9
+	fileEntries	4096
+	arrayColor	[  ]
+	arrayAlpha	[  ]
+    }
+
+}
+#connect "bitsUsed@52" "bitsStored@44"
+#connect "rampWidth@52" "window@40"
+#connect "rampCenter@52" "level@40"
+
+### 53 ###
+SoXipBuilderNode {
+    placement	-4.79157 5.7 -2.18343 6.5
+    flags	()
+    autoPanelPos	674 523 0 0
+    node	    SoXipCPUMprRender {
+	fields [ SFBool blendOn ]
+	blendOn	TRUE
+    }
+
+}
+#connect "volume@53" "output@12"
+
+### 54 ###
+SoXipBuilderNode {
+    placement	-4.50119 4.5 -2.28277 5.3
+    flags	()
+    autoPanelPos	498 630 0 0
+    node	    SoXipLutColorBar {
+	fields [ SFEnum position, SFVec2f origin, SFVec2f size, SFColor borderColor,
+		SFString bottomLabel, SFString topLabel ]
+	position	LEFT
+	origin	0.02 0.3
+	size	0.03 0.3
+	bottomLabel	"0"
+	topLabel	"4095"
+    }
+
+}
+
+### 55 ###
+SoXipBuilderNode {
+    placement	-0.6 7.2 1.8 8
+    flags	()
+    autoPanelPos	822 424 0 0
+    node	    Group {
+    }
+
+}
+#addChild "55" "56 57 58 81 82"
+
+### 56 ###
+SoXipBuilderNode {
+    placement	-1.8 5.7 1.04797 6.5
+    flags	()
+    autoPanelPos	718 129 0 0
+    node	    DEF OverlayStyle_Axial SoXipOverlayDrawStyle {
+	fields [ MFString label, SFFloat lineWidth,  ]
+	label	"roi"
+	lineWidth	1
+    }
+
+}
+
+### 57 ###
+SoXipBuilderNode {
+    placement	-1.2 4.8 1.10835 5.6
+    flags	()
+    autoPanelPos	938 549 0 0
+    node	    DEF OverlayClr_Axial SoXipOverlayColor {
+	fields [ MFString label, SFColor color, SFFloat transparency ]
+	label	"roi"
+	color	0.3 0.8 1
+	transparency	0.1
+    }
+
+}
+
+### 58 ###
+SoXipBuilderNode {
+    placement	-0.3 3.6 1.7 4.4
+    flags	()
+    autoPanelPos	342 106 0 0
+    node	    DEF Mask_Axial SoMaskContour {
+	fields [ MFString shapeLabel, SFMatrix plane, MFVec3f concavePoints,  ]
+	shapeLabel	"roi"
+	plane	1 0 0 0
+		0 -1 -8.74228e-008 0
+		0 8.74228e-008 -1 0
+		0.5 0.5 0.5 1
+	concavePoints	[  ]
+    }
+
+}
+#connect "volMask@58" "image@59"
+#connect "refModelMatrix@58" "modelMatrix@11"
+#connect "refWidth@58" "width@11"
+#connect "refHeight@58" "height@11"
+#connect "refDepth@58" "depth@11"
+#connect "plane@58" "plane@22"
+#connect "concavePoints@58" "points@81"
+
+### 59 ###
+SoXipBuilderEngine {
+    placement	3.6 -6.9 6.74775 -6.1
+    flags	()
+    autoPanelPos	249 26 0 0
+    engine	    DEF Mask_Switch SoXipSwitchMFDataImage {
+	inputs [ SFShort index ]
+	index	0
+	outputs [ SoXipMFDataImage image ]
+    }
+
+}
+#connect "image1@59" "output@60"
+#connect "image2@59" "inputVolume@77"
+#connect "image3@59" "mask@78"
+
+### 60 ###
+SoXipBuilderEngine {
+    placement	7.2 -5.4 9.85311 -4.6
+    flags	()
+    autoPanelPos	953 505 0 0
+    engine	    SoItkImageToXipMask {
+	inputs [  ]
+	outputs [ SoXipSFDataImage output ]
+    }
+
+}
+#connect "modelMatrix@60" "modelMatrix@61"
+#connect "input@60" "Output@63"
+
+### 61 ###
+SoXipBuilderEngine {
+    placement	3.9 -5.4 6.50814 -4.6
+    flags	()
+    autoPanelPos	1244 144 0 0
+    engine	    SoXipImageAttributes {
+	inputs [  ]
+	outputs [ SFMatrix modelMatrix, SFShort width, SFShort height, SFShort depth,
+		SFShort bitsStored, SFMatrix defaultOrientation, SFShort orthoScanOrientation, SFMatrix orthoOrientation1,
+		SFMatrix orthoOrientation2, SFMatrix orthoOrientation3, SFVec3f defaultCenter ]
+    }
+
+}
+#connect "image@61" "roiVolume@62"
+
+### 62 ###
+SoXipBuilderEngine {
+    placement	3.9 -3.3 5.9 -2.5
+    flags	()
+    autoPanelPos	774 22 0 0
+    engine	    DEF Segment SoROIVolume {
+	inputs [ MFVec3f seeds,  ]
+	seeds	[ 0 0 0,
+			  0 0 0 ]
+	outputs [ SoXipSFDataImage roiVolume, SoItkSFDataImage roiITKVolume, MFInt32 roiRegion, MFInt32 roiSize,
+		MFInt32 roiOrigin, MFVec3f seedPoints ]
+    }
+
+}
+#connect "volumeImageData@62" "output@12"
+#connect "seeds@62" "points@83"
+
+### 63 ###
+SoXipBuilderEngine {
+    placement	10.8 -5.1 12.8 -4.3
+    flags	()
+    autoPanelPos	1320 483 0 0
+    engine	    SoIABinaryDilate {
+	inputs [ SFShort Radius,  ]
+	Radius	3
+	outputs [ SoItkSFDataImage Output ]
+    }
+
+}
+#connect "Input1@63" "Output@64"
+
+### 64 ###
+SoXipBuilderEngine {
+    placement	13.5 -5.1 15.5 -4.3
+    flags	()
+    autoPanelPos	1069 645 0 0
+    engine	    SoIABinaryDilate {
+	inputs [ SFShort Radius, SFShort DilateValue ]
+	Radius	5
+	DilateValue	255
+	outputs [ SoItkSFDataImage Output ]
+    }
+
+}
+#connect "Input1@64" "Output@65"
+
+### 65 ###
+SoXipBuilderEngine {
+    placement	14.6049 -3.9 16.7951 -3.1
+    flags	()
+    autoPanelPos	1224 194 0 0
+    engine	    SoIAPostprocess {
+	inputs [ SoItkSFDataImage Input1, SFShort Shrink ]
+	Input1	"NULL"
+	Shrink	1
+	outputs [ SoItkSFDataImage Output ]
+    }
+
+}
+#connect "Input1@65" "Output@66"
+#connect "Shrink@65" "oa@73"
+
+### 66 ###
+SoXipBuilderEngine {
+    placement	10.5 -3.9 14.3822 -3.1
+    flags	()
+    autoPanelPos	682 146 0 0
+    engine	    SoItkBinaryThresholdImageFilter {
+	inputs [ SoItkSFDataImage Input0, SFFloat UpperThreshold, SFFloat InsideValue,  ]
+	Input0	"NULL"
+	UpperThreshold	100
+	InsideValue	255
+	outputs [ SoItkSFDataImage Output ]
+    }
+
+}
+#connect "Input0@66" "Output@67"
+
+### 67 ###
+SoXipBuilderEngine {
+    placement	10.5 -2.7 14.0224 -1.9
+    flags	()
+    autoPanelPos	107 23 0 0
+    engine	    SoItkFastMarchingImageFilter {
+	inputs [ SFShort Dimension, MFInt32 OutputRegion, MFFloat OutputOrigin, MFInt32 OutputSize,
+		SFFloat StoppingValue,  ]
+	Dimension	3
+	OutputRegion	[ 0, 0, 0, 0, 0, 0 ]
+	OutputOrigin	[ 0, 0, 0 ]
+	OutputSize	[ 0, 0, 0 ]
+	StoppingValue	50
+	outputs [ SoItkSFDataImage Output ]
+    }
+
+}
+#connect "Input0@67" "Output@68"
+#connect "OutputRegion@67" "roiRegion@62"
+#connect "TrialPoints@67" "NodeContainer@76"
+#connect "OutputSize@67" "roiSize@62"
+
+### 68 ###
+SoXipBuilderEngine {
+    placement	10.5 -1.2 13.408 -0.4
+    flags	()
+    autoPanelPos	858 228 0 0
+    engine	    SoItkSigmoidImageFilter {
+	inputs [ SFFloat Beta, SFFloat OutputMaximum, SFFloat Alpha ]
+	Beta	18
+	OutputMaximum	1
+	Alpha	-8
+	outputs [ SoItkSFDataImage Output ]
+    }
+
+}
+#connect "Input0@68" "Output@69"
+
+### 69 ###
+SoXipBuilderEngine {
+    placement	10.5 -0 16.8704 0.8
+    flags	()
+    autoPanelPos	860 42 0 0
+    engine	    SoItkGradientMagnitudeRecursiveGaussianImageFilter {
+	inputs [ SFFloat Sigma,  ]
+	Sigma	0.5
+	outputs [ SoItkSFDataImage Output ]
+    }
+
+}
+#connect "Input0@69" "Output@70"
+
+### 70 ###
+SoXipBuilderEngine {
+    placement	10.5 1.2 12.5 2
+    flags	()
+    autoPanelPos	951 101 0 0
+    engine	    SoIAPreprocess {
+	inputs [ SFShort Extention ]
+	Extention	1
+	outputs [ SoItkSFDataImage Output ]
+    }
+
+}
+#connect "Input1@70" "Output@71"
+#connect "Extention@70" "oa@73"
+
+### 71 ###
+SoXipBuilderEngine {
+    placement	10.5 2.4 15.9561 3.2
+    flags	()
+    autoPanelPos	881 70 0 0
+    engine	    SoItkCurvatureAnisotropicDiffusionImageFilter {
+	inputs [ SFFloat NumberOfIterations, SFFloat TimeStep, SFFloat ConductanceParameter ]
+	NumberOfIterations	5
+	TimeStep	0.0625
+	ConductanceParameter	3
+	outputs [ SoItkSFDataImage Output ]
+    }
+
+}
+#connect "Input0@71" "Output@72"
+
+### 72 ###
+SoXipBuilderEngine {
+    placement	10.5111 3.6 13.1092 4.4
+    flags	()
+    autoPanelPos	1212 48 0 0
+    engine	    SoItkCastImageFilter {
+	inputs [  ]
+	outputs [ SoItkSFDataImage Output ]
+    }
+
+}
+#connect "Input0@72" "roiITKVolume@62"
+
+### 73 ###
+SoXipBuilderEngine {
+    placement	0.6 -9.3 2.6 -8.5
+    flags	()
+    autoPanelPos	384 118 0 0
+    engine	    Calculator {
+	expression	"oa = a<1 ? 1 : a"
+    }
+
+}
+#connect "a@73" "output@74"
+
+### 74 ###
+SoXipBuilderEngine {
+    placement	-2.7 -9.3 -0.7 -8.5
+    flags	()
+    autoPanelPos	357 186 0 0
+    engine	    SoIAParseString {
+	inputs [  ]
+	outputs [ SFFloat output ]
+    }
+
+}
+#connect "string@74" "string@75"
+
+### 75 ###
+SoXipBuilderEngine {
+    placement	-2.7 -7.2 -0.186787 -6.4
+    flags	()
+    autoPanelPos	293 334 0 0
+    engine	    DEF Slice_Thickness SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x18
+	element	0x50
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@75" "output@48"
+
+### 76 ###
+SoXipBuilderEngine {
+    placement	6.91797 -3 9.40877 -2.2
+    flags	()
+    autoPanelPos	319 377 0 0
+    engine	    SoItkNodeContainer {
+	inputs [ MFVec3f Seeds, MFFloat Labels ]
+	Seeds	[  ]
+	Labels	[  ]
+	outputs [ SoItkSFNodeContainer NodeContainer ]
+    }
+
+}
+#connect "Seeds@76" "seedPoints@62"
+
+### 77 ###
+SoXipBuilderEngine {
+    placement	7.19999 -8.1 10.1529 -7.3
+    flags	()
+    autoPanelPos	1102 98 0 0
+    engine	    DEF Import SoIALoadDcmSegObject {
+	inputs [  ]
+	outputs [ SoXipSFDataImage inputVolume ]
+    }
+
+}
+
+### 78 ###
+SoXipBuilderEngine {
+    placement	11.4 -8.1 13.8257 -7.3
+    flags	()
+    autoPanelPos	328 286 0 0
+    engine	    DEF QIBA_Mask SoContourVoxelizer {
+	inputs [ MFVec3f point, MFInt32 coordIndex, SFEnum maskType,  ]
+	point	[  ]
+	coordIndex	[  ]
+	maskType	BYTE_MASK
+	outputs [ SoXipSFDataImage mask ]
+    }
+
+}
+#connect "point@78" "pointList@79"
+#connect "coordIndex@78" "pointIndex@79"
+#connect "width@78" "maskWidth@79"
+#connect "height@78" "maskHeight@79"
+#connect "depth@78" "maskDepth@79"
+#connect "modelMatrix@78" "modelMatrix@79"
+
+### 79 ###
+SoXipBuilderEngine {
+    placement	14.1 -8.1 16.6305 -7.3
+    flags	()
+    autoPanelPos	1153 51 0 0
+    engine	    DEF QIBA_Contour SoNormalizeContour {
+	inputs [ MFVec3f voxelDirection,  ]
+	voxelDirection	[ 1 0 0,
+			  0 1 0 ]
+	outputs [ SFMatrix modelMatrix, SFInt32 maskWidth, SFInt32 maskHeight, SFInt32 maskDepth,
+		MFVec3f pointList, MFInt32 pointIndex ]
+    }
+
+}
+#connect "voxelPosition@79" "imagePosition@80"
+#connect "voxelSpacing@79" "imageSpacing@80"
+
+### 80 ###
+SoXipBuilderEngine {
+    placement	10.8 -6.9 12.8 -6.1
+    flags	()
+    autoPanelPos	1211 629 0 0
+    engine	    DEF QIBA_UID SoGetImageInfor {
+	inputs [ SoXipMFDataDicom refInput,  ]
+	refInput	[  ]
+	outputs [ SFVec3f imagePosition, SFVec3f imageSpacing ]
+    }
+
+}
+#connect "refInput@80" "output@13"
+
+### 81 ###
+SoXipBuilderNode {
+    placement	-0.00116334 2.4 2.17228 3.2
+    flags	()
+    autoPanelPos	796 584 0 0
+    node	    DEF Punch_Axial SoMaskEditManip {
+	fields [ SFBool on, MFVec3f points ]
+	on	FALSE
+	points	[  ]
+    }
+
+}
+
+### 82 ###
+SoXipBuilderNode {
+    placement	2.1 3.6 4.1 4.4
+    flags	()
+    autoPanelPos	600 683 0 0
+    node	    DEF Seed_Switch Switch {
+    }
+
+}
+#addChild "82" "83"
+
+### 83 ###
+SoXipBuilderNode {
+    placement	2.4 2.4 4.4 3.2
+    flags	()
+    autoPanelPos	527 56 0 0
+    node	    DEF Seed SoDrawLine {
+	fields [ MFVec3f points ]
+	points	[ 0 0 0,
+			  0 0 0 ]
+    }
+
+}
+
+### 84 ###
+SoXipBuilderNode {
+    placement	3.3 7.2 5.3 8
+    flags	()
+    autoPanelPos	337 333 0 0
+    node	    DEF RECIST_Switch Switch {
+    }
+
+}
+#addChild "84" "85"
+
+### 85 ###
+SoXipBuilderNode {
+    placement	6.6 7.2 8.6 8
+    flags	()
+    node	    Separator {
+    }
+
+}
+#addChild "85" "86 87 94 95"
+
+### 86 ###
+SoXipBuilderNode {
+    placement	5.1 5.4 7.1 6.2
+    flags	()
+    autoPanelPos	1067 33 0 0
+    node	    DEF RECIST SoDrawLine {
+	fields [ SFFloat lineWidth, MFVec3f points ]
+	lineWidth	1.5
+	points	[ 0 0 0,
+			  0 0 0 ]
+    }
+
+}
+#connect "points@86" "coordinates@25"
+
+### 87 ###
+SoXipBuilderNode {
+    placement	7.2 5.4 9.2 6.2
+    flags	()
+    autoPanelPos	1214 373 0 0
+    node	    Translation {
+	translation	0.02 -0.02 0
+    }
+
+}
+#connect "translation@87" "oA@88"
+
+### 88 ###
+SoXipBuilderEngine {
+    placement	7.8 2.1 9.8 2.9
+    flags	()
+    autoPanelPos	604 113 0 0
+    engine	    Calculator {
+	a	1
+	C	0.02 -0.02 0
+	expression	"oa=length(A-B) * a; oA = (A+B)/2 + C"
+    }
+
+}
+#connect "a@88" "x@89"
+#connect "A@88" "output@92"
+#connect "B@88" "output@93"
+
+### 89 ###
+SoXipBuilderEngine {
+    placement	5.1 0.6 7.22848 1.4
+    flags	()
+    autoPanelPos	925 366 0 0
+    engine	    DecomposeVec3f {
+	vector	1 1 1
+    }
+
+}
+#connect "vector@89" "output@90"
+
+### 90 ###
+SoXipBuilderEngine {
+    placement	2.7 0.6 4.7 1.4
+    flags	()
+    autoPanelPos	1035 156 0 0
+    engine	    SelectOne {
+	type	"MFVec3f"
+	index	0
+	input	1 1 1
+    }
+
+}
+#connect "input@90" "scaleFactor@91"
+
+### 91 ###
+SoXipBuilderEngine {
+    placement	-3.9 -2.4 -1.71156 -1.6
+    flags	()
+    autoPanelPos	866 320 0 0
+    engine	    DecomposeMatrix {
+    }
+
+}
+#connect "matrix@91" "modelMatrix@11"
+
+### 92 ###
+SoXipBuilderEngine {
+    placement	5.1 2.7 7.1 3.5
+    flags	()
+    autoPanelPos	1279 294 0 0
+    engine	    SelectOne {
+	type	"MFVec3f"
+	index	0
+	input	[ 0 0 0,
+			  0 0 0 ]
+    }
+
+}
+#connect "input@92" "points@86"
+
+### 93 ###
+SoXipBuilderEngine {
+    placement	5.1 1.8 7.1 2.6
+    flags	()
+    autoPanelPos	1029 247 0 0
+    engine	    SelectOne {
+	type	"MFVec3f"
+	index	1
+	input	[ 0 0 0,
+			  0 0 0 ]
+    }
+
+}
+#connect "input@93" "points@86"
+
+### 94 ###
+SoXipBuilderNode {
+    placement	10.2 3 12.2 3.8
+    flags	()
+    autoPanelPos	1096 226 0 0
+    node	    FontStyle {
+	size	15
+    }
+
+}
+
+### 95 ###
+SoXipBuilderNode {
+    placement	9.6 5.4 11.6 6.2
+    flags	()
+    autoPanelPos	1133 128 0 0
+    node	    DEF RECIST_Value SoXipText2 {
+	fields [ SFString string,  ]
+	string	"0 mm"
+    }
+
+}
+#connect "string@95" "output@96"
+
+### 96 ###
+SoXipBuilderEngine {
+    placement	7.8 4.2 10.7529 5
+    flags	()
+    autoPanelPos	1209 67 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	" "
+	input0	"0"
+	input1	"mm"
+	input2	[  ]
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input0@96" "output@97"
+
+### 97 ###
+SoXipBuilderEngine {
+    placement	7.8 3 9.8 3.8
+    flags	()
+    autoPanelPos	877 466 0 0
+    engine	    DEF RECIST_inMM Concatenate {
+	type	"MFInt32"
+	input0	0
+    }
+
+}
+#connect "input0@97" "oa@88"
+
+### 98 ###
+SoXipBuilderNode {
+    placement	11.1 7.2 13.1 8
+    flags	()
+    autoPanelPos	582 441 0 0
+    node	    DEF WHO_Switch Switch {
+    }
+
+}
+#addChild "98" "99"
+
+### 99 ###
+SoXipBuilderNode {
+    placement	14.1 7.2 16.1 8
+    flags	()
+    node	    Separator {
+    }
+
+}
+#addChild "99" "100 101 94 107"
+
+### 100 ###
+SoXipBuilderNode {
+    placement	12.3 5.4 14.7283 6.2
+    flags	()
+    autoPanelPos	1026 287 0 0
+    node	    DEF WHO SoBiorthogonalLine {
+	fields [ SFFloat lineWidth, MFVec3f points ]
+	lineWidth	1.5
+	points	[ 0 0 0,
+			  0 0 0,
+			  0 0 0,
+			  0 0 0 ]
+    }
+
+}
+#connect "points@100" "coordinates@26"
+
+### 101 ###
+SoXipBuilderNode {
+    placement	15 5.4 17 6.2
+    flags	()
+    autoPanelPos	1277 523 0 0
+    node	    Translation {
+	translation	0.02 -0.02 0
+    }
+
+}
+#connect "translation@101" "oA@102"
+
+### 102 ###
+SoXipBuilderEngine {
+    placement	15 2.4 17 3.2
+    flags	()
+    autoPanelPos	369 36 0 0
+    engine	    Calculator {
+	a	1
+	E	0.02 -0.02 0
+	expression	"oa = length(A-B)*a; ob = length(C-D)*a; oA = A+E"
+    }
+
+}
+#connect "a@102" "x@89"
+#connect "A@102" "output@103"
+#connect "B@102" "output@104"
+#connect "C@102" "output@105"
+#connect "D@102" "output@106"
+
+### 103 ###
+SoXipBuilderEngine {
+    placement	12.3 2.4 14.3 3.2
+    flags	()
+    autoPanelPos	865 177 0 0
+    engine	    SelectOne {
+	type	"MFVec3f"
+	input	[ 0 0 0,
+			  0 0 0,
+			  0 0 0,
+			  0 0 0 ]
+    }
+
+}
+#connect "input@103" "points@100"
+
+### 104 ###
+SoXipBuilderEngine {
+    placement	12.3 1.5 14.3 2.3
+    flags	()
+    autoPanelPos	933 315 0 0
+    engine	    SelectOne {
+	type	"MFVec3f"
+	index	1
+	input	[ 0 0 0,
+			  0 0 0,
+			  0 0 0,
+			  0 0 0 ]
+    }
+
+}
+#connect "input@104" "points@100"
+
+### 105 ###
+SoXipBuilderEngine {
+    placement	12.3 0.6 14.3 1.4
+    flags	()
+    autoPanelPos	916 361 0 0
+    engine	    SelectOne {
+	type	"MFVec3f"
+	index	2
+	input	[ 0 0 0,
+			  0 0 0,
+			  0 0 0,
+			  0 0 0 ]
+    }
+
+}
+#connect "input@105" "points@100"
+
+### 106 ###
+SoXipBuilderEngine {
+    placement	12.3 -0.3 14.3 0.5
+    flags	()
+    autoPanelPos	1011 480 0 0
+    engine	    SelectOne {
+	type	"MFVec3f"
+	index	3
+	input	[ 0 0 0,
+			  0 0 0,
+			  0 0 0,
+			  0 0 0 ]
+    }
+
+}
+#connect "input@106" "points@100"
+
+### 107 ###
+SoXipBuilderNode {
+    placement	17.4 5.4 19.4 6.2
+    flags	()
+    autoPanelPos	688 53 0 0
+    node	    DEF WHO_Value SoXipText2 {
+	fields [ SFString string,  ]
+	string	"LD =  0  mm;  SD =  0  mm"
+    }
+
+}
+#connect "string@107" "output@108"
+
+### 108 ###
+SoXipBuilderEngine {
+    placement	15 3.9 17.9529 4.7
+    flags	()
+    autoPanelPos	793 197 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	"  "
+	input0	"LD ="
+	input1	"0"
+	input2	"mm;"
+	input3	"SD ="
+	input4	"0"
+	input5	"mm"
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input1@108" "oa@109"
+#connect "input4@108" "ob@109"
+
+### 109 ###
+SoXipBuilderEngine {
+    placement	20.1 2.4 22.1 3.2
+    flags	()
+    autoPanelPos	789 255 0 0
+    engine	    Calculator {
+	expression	"oa = a>=b ? a : b; ob = a<=b ? a : b; oc = a * b;"
+    }
+
+}
+#connect "a@109" "output@110"
+#connect "b@109" "output@111"
+
+### 110 ###
+SoXipBuilderEngine {
+    placement	17.7 2.7 19.7 3.5
+    flags	()
+    autoPanelPos	791 108 0 0
+    engine	    DEF WHO_oa Concatenate {
+	type	"MFInt32"
+	input0	0
+    }
+
+}
+#connect "input0@110" "oa@102"
+
+### 111 ###
+SoXipBuilderEngine {
+    placement	17.7 1.8 19.7 2.6
+    flags	()
+    autoPanelPos	845 408 0 0
+    engine	    DEF WHO_ob Concatenate {
+	type	"MFInt32"
+	input0	0
+    }
+
+}
+#connect "input0@111" "ob@102"
+
+### 112 ###
+SoXipBuilderNode {
+    placement	-9.3 2.1 -6.9 2.9
+    flags	()
+    autoPanelPos	1084 754 0 0
+    node	    Group {
+    }
+
+}
+#addChild "112" "113 122 143 153 163"
+
+### 113 ###
+SoXipBuilderNode {
+    placement	-11.1 -0.6 -9.1 0.2
+    flags	()
+    autoPanelPos	924 330 0 0
+    node	    Separator {
+    }
+
+}
+#addChild "113" "114 115 118 119"
+
+### 114 ###
+SoXipBuilderNode {
+    placement	-13.2 -2.1 -11.2 -1.3
+    flags	()
+    autoPanelPos	253 452 0 0
+    node	    Translation {
+	translation	-0.95 0.95 0
+    }
+
+}
+
+### 115 ###
+SoXipBuilderNode {
+    placement	-13.2 -3 -11.2 -2.2
+    flags	()
+    autoPanelPos	188 106 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	"SU "
+    }
+
+}
+#connect "string@115" "output@116"
+
+### 116 ###
+SoXipBuilderEngine {
+    placement	-14.1 -3.9 -11.2784 -3.1
+    flags	()
+    autoPanelPos	53 251 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	" "
+	input0	"SU"
+	input1	""
+	input2	[  ]
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input1@116" "string@117"
+
+### 117 ###
+SoXipBuilderEngine {
+    placement	-13.8 -4.8 -11.2299 -4
+    flags	()
+    autoPanelPos	258 349 0 0
+    engine	    SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x10
+	element	0x20
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@117" "output@48"
+
+### 118 ###
+SoXipBuilderNode {
+    placement	-10.5 -2.1 -8.5 -1.3
+    flags	()
+    autoPanelPos	362 626 0 0
+    node	    Translation {
+	translation	0 -0.05 0
+    }
+
+}
+
+### 119 ###
+SoXipBuilderNode {
+    placement	-10.5 -3 -8.5 -2.2
+    flags	()
+    autoPanelPos	330 244 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	"ST "
+    }
+
+}
+#connect "string@119" "output@120"
+
+### 120 ###
+SoXipBuilderEngine {
+    placement	-10.5 -3.9 -7.67841 -3.1
+    flags	()
+    autoPanelPos	364 651 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	" "
+	input0	"ST"
+	input1	""
+	input2	[  ]
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input1@120" "string@121"
+
+### 121 ###
+SoXipBuilderEngine {
+    placement	-10.5 -5.1 -7.9299 -4.3
+    flags	()
+    autoPanelPos	156 198 0 0
+    engine	    SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x8
+	element	0x20
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@121" "output@48"
+
+### 122 ###
+SoXipBuilderNode {
+    placement	-13.5 8.1 -9.1 8.9
+    flags	()
+    node	    Separator {
+    }
+
+}
+#addChild "122" "123 124 127 128 131 132 135 136 139 140"
+
+### 123 ###
+SoXipBuilderNode {
+    placement	-15.6 6.6 -13.6 7.4
+    flags	()
+    autoPanelPos	275 346 0 0
+    node	    Translation {
+	translation	-0.95 -0.55 0
+    }
+
+}
+
+### 124 ###
+SoXipBuilderNode {
+    placement	-15.6 5.7 -13.6 6.5
+    flags	()
+    autoPanelPos	143 165 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	" mAs"
+    }
+
+}
+#connect "string@124" "output@125"
+
+### 125 ###
+SoXipBuilderEngine {
+    placement	-16.7343 4.8 -13.9128 5.6
+    flags	()
+    autoPanelPos	235 227 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	" "
+	input0	""
+	input1	"mAs"
+	input2	[  ]
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input0@125" "string@126"
+
+### 126 ###
+SoXipBuilderEngine {
+    placement	-16.4451 3.9 -13.9318 4.7
+    flags	()
+    autoPanelPos	501 22 0 0
+    engine	    DEF Exposure SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x18
+	element	0x1152
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@126" "output@48"
+
+### 127 ###
+SoXipBuilderNode {
+    placement	-13.5 6.6 -11.5 7.4
+    flags	()
+    autoPanelPos	163 198 0 0
+    node	    Translation {
+	translation	0 -0.05 0
+    }
+
+}
+
+### 128 ###
+SoXipBuilderNode {
+    placement	-13.5 5.7 -11.5 6.5
+    flags	()
+    autoPanelPos	150 248 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	" kVP"
+    }
+
+}
+#connect "string@128" "output@129"
+
+### 129 ###
+SoXipBuilderEngine {
+    placement	-13.4343 4.8 -10.6128 5.6
+    flags	()
+    autoPanelPos	517 40 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	" "
+	input0	""
+	input1	"kVP"
+	input2	[  ]
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input0@129" "string@130"
+
+### 130 ###
+SoXipBuilderEngine {
+    placement	-13.4451 3.9 -10.9319 4.7
+    flags	()
+    autoPanelPos	222 373 0 0
+    engine	    DEF KVP SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x18
+	element	0x60
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@130" "output@48"
+
+### 131 ###
+SoXipBuilderNode {
+    placement	-15.6 3 -13.6 3.8
+    flags	()
+    autoPanelPos	191 298 0 0
+    node	    Translation {
+	translation	0 -0.05 0
+    }
+
+}
+
+### 132 ###
+SoXipBuilderNode {
+    placement	-15.6 2.1 -13.6 2.9
+    flags	()
+    autoPanelPos	153 295 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	"FV  mm"
+    }
+
+}
+#connect "string@132" "output@133"
+
+### 133 ###
+SoXipBuilderEngine {
+    placement	-16.7343 1.2 -13.9128 2
+    flags	()
+    autoPanelPos	175 383 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	" "
+	input0	"FV"
+	input1	""
+	input2	"mm"
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input1@133" "string@134"
+
+### 134 ###
+SoXipBuilderEngine {
+    placement	-16.7451 0.3 -14.2318 1.1
+    flags	()
+    autoPanelPos	141 461 0 0
+    engine	    DEF FOV SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x18
+	element	0x90
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@134" "output@48"
+
+### 135 ###
+SoXipBuilderNode {
+    placement	-12.6 3 -10.6 3.8
+    flags	()
+    autoPanelPos	287 261 0 0
+    node	    Translation {
+	translation	0 -0.05 0
+    }
+
+}
+
+### 136 ###
+SoXipBuilderNode {
+    placement	-12.6 2.1 -10.6 2.9
+    flags	()
+    autoPanelPos	290 297 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	"SP  mm"
+    }
+
+}
+#connect "string@136" "output@137"
+
+### 137 ###
+SoXipBuilderEngine {
+    placement	-12.5344 1.2 -9.71278 2
+    flags	()
+    autoPanelPos	532 117 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	" "
+	input0	"SP"
+	input1	""
+	input2	"mm"
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input1@137" "string@138"
+
+### 138 ###
+SoXipBuilderEngine {
+    placement	-12.545 0.3 -10.0318 1.1
+    flags	()
+    autoPanelPos	138 491 0 0
+    engine	    DEF PixelSpacing SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x28
+	element	0x30
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@138" "output@48"
+
+### 139 ###
+SoXipBuilderNode {
+    placement	-9.6 6.6 -7.6 7.4
+    flags	()
+    autoPanelPos	200 148 0 0
+    node	    Translation {
+	translation	0 -0.05 0
+    }
+
+}
+
+### 140 ###
+SoXipBuilderNode {
+    placement	-9.6 5.7 -7.6 6.5
+    flags	()
+    autoPanelPos	356 205 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	"ST  mm"
+    }
+
+}
+#connect "string@140" "output@141"
+
+### 141 ###
+SoXipBuilderEngine {
+    placement	-9.53435 4.8 -6.71276 5.6
+    flags	()
+    autoPanelPos	410 231 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	" "
+	input0	"ST"
+	input1	""
+	input2	"mm"
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input1@141" "string@142"
+
+### 142 ###
+SoXipBuilderEngine {
+    placement	-9.54505 3.9 -7.03183 4.7
+    flags	()
+    autoPanelPos	225 415 0 0
+    engine	    DEF SliceThickness SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x18
+	element	0x50
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@142" "output@48"
+
+### 143 ###
+SoXipBuilderNode {
+    placement	-9.6 9.6 -6.8 10.4
+    flags	()
+    node	    Separator {
+    }
+
+}
+#addChild "143" "144 145 147 148 150 151"
+
+### 144 ###
+SoXipBuilderNode {
+    placement	-12.3 8.1 -10.3 8.9
+    flags	()
+    autoPanelPos	126 149 0 0
+    node	    Translation {
+	translation	0.5 0.95 0
+    }
+
+}
+
+### 145 ###
+SoXipBuilderNode {
+    placement	-12.3 7.2 -10.3 8
+    flags	()
+    autoPanelPos	247 139 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	""
+    }
+
+}
+#connect "string@145" "string@146"
+
+### 146 ###
+SoXipBuilderEngine {
+    placement	-12.2134 6.3 -9.70019 7.1
+    flags	()
+    autoPanelPos	198 217 0 0
+    engine	    SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x8
+	element	0x70
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@146" "output@48"
+
+### 147 ###
+SoXipBuilderNode {
+    placement	-9.3 8.1 -7.3 8.9
+    flags	()
+    autoPanelPos	377 87 0 0
+    node	    Translation {
+	translation	0 -0.05 0
+    }
+
+}
+
+### 148 ###
+SoXipBuilderNode {
+    placement	-9.3 7.2 -7.3 8
+    flags	()
+    autoPanelPos	333 164 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	""
+    }
+
+}
+#connect "string@148" "string@149"
+
+### 149 ###
+SoXipBuilderEngine {
+    placement	-9.21341 6.3 -6.70019 7.1
+    flags	()
+    autoPanelPos	609 70 0 0
+    engine	    SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x8
+	element	0x1090
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@149" "output@48"
+
+### 150 ###
+SoXipBuilderNode {
+    placement	-6.3 8.1 -4.3 8.9
+    flags	()
+    autoPanelPos	541 95 0 0
+    node	    Translation {
+	translation	0 -0.05 0
+    }
+
+}
+
+### 151 ###
+SoXipBuilderNode {
+    placement	-6.3 7.2 -4.3 8
+    flags	()
+    autoPanelPos	525 59 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	""
+    }
+
+}
+#connect "string@151" "string@152"
+
+### 152 ###
+SoXipBuilderEngine {
+    placement	-6.21341 6.3 -3.70019 7.1
+    flags	()
+    autoPanelPos	532 185 0 0
+    engine	    SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x8
+	element	0x60
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@152" "output@48"
+
+### 153 ###
+SoXipBuilderNode {
+    placement	-7.8 9 -5.8 9.8
+    flags	()
+    node	    Separator {
+    }
+
+}
+#addChild "153" "154 155 159 160"
+
+### 154 ###
+SoXipBuilderNode {
+    placement	-10.5 6.9 -8.5 7.7
+    flags	()
+    autoPanelPos	119 269 0 0
+    node	    Translation {
+	translation	0.5 -0.7 0
+    }
+
+}
+
+### 155 ###
+SoXipBuilderNode {
+    placement	-8.4 6.9 -6.4 7.7
+    flags	()
+    autoPanelPos	295 26 0 0
+    node	    DEF Image_Window SoXipText2 {
+	fields [ SFString string,  ]
+	string	"W 1"
+    }
+
+}
+#connect "string@155" "output@156"
+
+### 156 ###
+SoXipBuilderEngine {
+    placement	-12.2343 4.2 -9.41276 5
+    flags	()
+    autoPanelPos	541 76 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	" "
+	input0	"W"
+	input1	"1"
+	input2	[  ]
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input1@156" "output@157"
+
+### 157 ###
+SoXipBuilderEngine {
+    placement	-9 5.4 -7 6.2
+    flags	()
+    autoPanelPos	218 135 0 0
+    engine	    SelectOne {
+	type	"MFShort"
+	index	0
+	input	[ 1, 0 ]
+    }
+
+}
+#connect "input@157" "output@158"
+
+### 158 ###
+SoXipBuilderEngine {
+    placement	-9 1.5 -7 2.3
+    flags	()
+    autoPanelPos	913 70 0 0
+    engine	    Concatenate {
+	type	"MFShort"
+	input0	1
+	input1	0
+    }
+
+}
+#connect "input0@158" "oc@45"
+#connect "input1@158" "od@45"
+
+### 159 ###
+SoXipBuilderNode {
+    placement	-6.3 6.3 -4.3 7.1
+    flags	()
+    autoPanelPos	672 392 0 0
+    node	    Translation {
+	translation	0 -0.05 0
+    }
+
+}
+
+### 160 ###
+SoXipBuilderNode {
+    placement	-3.6 6.6 -1.6 7.4
+    flags	()
+    autoPanelPos	560 123 0 0
+    node	    DEF Image_Level SoXipText2 {
+	fields [ SFString string,  ]
+	string	"L   0"
+    }
+
+}
+#connect "string@160" "output@161"
+
+### 161 ###
+SoXipBuilderEngine {
+    placement	-2.33435 3.9 0.487241 4.7
+    flags	()
+    autoPanelPos	903 355 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	" "
+	input0	"L  "
+	input1	"0"
+	input2	[  ]
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input1@161" "output@162"
+
+### 162 ###
+SoXipBuilderEngine {
+    placement	-6 4.8 -4 5.6
+    flags	()
+    autoPanelPos	587 251 0 0
+    engine	    SelectOne {
+	type	"MFShort"
+	index	1
+	input	[ 1, 0 ]
+    }
+
+}
+#connect "input@162" "output@158"
+
+### 163 ###
+SoXipBuilderNode {
+    placement	-7.4 -0.3 -1 0.5
+    flags	()
+    autoPanelPos	340 597 0 0
+    node	    Switch {
+    }
+
+}
+#addChild "163" "164 166 168 169 170 171 173 174 176 178 179 181 182 184 186"
+
+### 164 ###
+SoXipBuilderNode {
+    placement	-10.2 -1.8 -8.2 -1
+    flags	()
+    autoPanelPos	331 644 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	"TRUE"
+    }
+
+}
+#connect "string@164" "status@165"
+
+### 165 ###
+SoXipBuilderEngine {
+    placement	3.6 -8.1 5.74118 -7.3
+    flags	()
+    autoPanelPos	1002 308 0 0
+    engine	    DEF Export SoDcmSegObject {
+	inputs [ SoXipMFDataDicom refInput, MFInt32 origin,  ]
+	refInput	[  ]
+	origin	[ 0, 0, 0 ]
+	outputs [ SFBool status ]
+    }
+
+}
+#connect "refInput@165" "output@13"
+#connect "origin@165" "roiOrigin@62"
+#connect "input0@165" "volMask@58"
+
+### 166 ###
+SoXipBuilderNode {
+    placement	-9.9 -3 -7.9 -2.2
+    flags	()
+    autoPanelPos	562 716 0 0
+    node	    DEF Metrics_RECIST SoXipText2 {
+	fields [ SFString string,  ]
+	string	"0"
+    }
+
+}
+#connect "string@166" "RECIST@167"
+
+### 167 ###
+SoXipBuilderEngine {
+    placement	7.39335 -6.9 9.62648 -6.1
+    flags	()
+    autoPanelPos	1193 74 0 0
+    engine	    DEF Vol_Metrics SoVolumeMetrics {
+	inputs [  ]
+	outputs [ SFFloat RECIST, SFFloat WHO, SFFloat Volume ]
+    }
+
+}
+#connect "inputVolume@167" "image@59"
+
+### 168 ###
+SoXipBuilderNode {
+    placement	-9.3 -4.2 -7.3 -3.4
+    flags	()
+    autoPanelPos	645 711 0 0
+    node	    DEF Metrics_WHO SoXipText2 {
+	fields [ SFString string,  ]
+	string	"0"
+    }
+
+}
+#connect "string@168" "WHO@167"
+
+### 169 ###
+SoXipBuilderNode {
+    placement	-8.7 -5.4 -6.7 -4.6
+    flags	()
+    autoPanelPos	777 681 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	"0"
+    }
+
+}
+#connect "string@169" "output@46"
+
+### 170 ###
+SoXipBuilderNode {
+    placement	-8.1 -6.9 -6.1 -6.1
+    flags	()
+    autoPanelPos	747 675 0 0
+    node	    DEF Metrics_Volume SoXipText2 {
+	fields [ SFString string,  ]
+	string	"0"
+    }
+
+}
+#connect "string@170" "Volume@167"
+
+### 171 ###
+SoXipBuilderNode {
+    placement	-7.8 -8.1 -5.8 -7.3
+    flags	()
+    autoPanelPos	337 155 0 0
+    node	    DEF Seed_Points SoXipText2 {
+	fields [ SFString string,  ]
+	string	"0"
+    }
+
+}
+#connect "string@171" "points@172"
+
+### 172 ###
+SoXipBuilderEngine {
+    placement	3.9 -2.4 5.9 -1.6
+    flags	()
+    autoPanelPos	461 144 0 0
+    engine	    SoMap2ImagePt {
+	inputs [ SoXipMFDataDicom refInput, MFVec3f coordinates ]
+	refInput	[  ]
+	coordinates	[ 0 0 0,
+			  0 0 0 ]
+	outputs [ MFInt32 points, SFString sopInstanceUID, SFBool status ]
+    }
+
+}
+#connect "refInput@172" "output@13"
+#connect "coordinates@172" "points@83"
+
+### 173 ###
+SoXipBuilderNode {
+    placement	-7.2 -9.6 -5.2 -8.8
+    flags	()
+    autoPanelPos	617 361 0 0
+    node	    DEF Seed_UID SoXipText2 {
+	fields [ SFString string,  ]
+	string	""
+    }
+
+}
+#connect "string@173" "sopInstanceUID@172"
+
+### 174 ###
+SoXipBuilderNode {
+    placement	-5.1 -11.4 -3.1 -10.6
+    flags	()
+    autoPanelPos	838 769 0 0
+    node	    DEF UID_Series SoXipText2 {
+	fields [ SFString string,  ]
+	string	""
+    }
+
+}
+#connect "string@174" "string@175"
+
+### 175 ###
+SoXipBuilderEngine {
+    placement	0.6 -5.4 3.24009 -4.6
+    flags	()
+    autoPanelPos	307 103 0 0
+    engine	    DEF Series_UID SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x20
+	element	0xe
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@175" "output@48"
+
+### 176 ###
+SoXipBuilderNode {
+    placement	-3 -9.6 -1 -8.8
+    flags	()
+    autoPanelPos	1099 426 0 0
+    node	    DEF RECIST_Points SoXipText2 {
+	fields [ SFString string,  ]
+	string	"0"
+    }
+
+}
+#connect "string@176" "points@177"
+
+### 177 ###
+SoXipBuilderEngine {
+    placement	5.1 3.6 7.1 4.4
+    flags	()
+    autoPanelPos	839 334 0 0
+    engine	    SoMap2ImagePt {
+	inputs [ SoXipMFDataDicom refInput, MFVec3f coordinates ]
+	refInput	[  ]
+	coordinates	[ 0 0 0,
+			  0 0 0 ]
+	outputs [ MFInt32 points, SFString sopInstanceUID, SFBool status ]
+    }
+
+}
+#connect "refInput@177" "output@13"
+#connect "coordinates@177" "points@86"
+
+### 178 ###
+SoXipBuilderNode {
+    placement	-2.4 -8.1 -0.4 -7.3
+    flags	()
+    autoPanelPos	980 682 0 0
+    node	    DEF RECIST_UID SoXipText2 {
+	fields [ SFString string,  ]
+	string	""
+    }
+
+}
+#connect "string@178" "sopInstanceUID@177"
+
+### 179 ###
+SoXipBuilderNode {
+    placement	-1.8 -6.9 0.200001 -6.1
+    flags	()
+    autoPanelPos	991 598 0 0
+    node	    DEF WHO_Points SoXipText2 {
+	fields [ SFString string,  ]
+	string	"0"
+    }
+
+}
+#connect "string@179" "points@180"
+
+### 180 ###
+SoXipBuilderEngine {
+    placement	12.3 3.3 14.3 4.1
+    flags	()
+    autoPanelPos	1193 349 0 0
+    engine	    SoMap2ImagePt {
+	inputs [ SoXipMFDataDicom refInput, MFVec3f coordinates ]
+	refInput	[  ]
+	coordinates	[ 0 0 0,
+			  0 0 0,
+			  0 0 0,
+			  0 0 0 ]
+	outputs [ MFInt32 points, SFString sopInstanceUID, SFBool status ]
+    }
+
+}
+#connect "refInput@180" "output@13"
+#connect "coordinates@180" "points@100"
+
+### 181 ###
+SoXipBuilderNode {
+    placement	-1.5 -5.4 0.499999 -4.6
+    flags	()
+    autoPanelPos	1010 517 0 0
+    node	    DEF WHO_UID SoXipText2 {
+	fields [ SFString string,  ]
+	string	""
+    }
+
+}
+#connect "string@181" "sopInstanceUID@180"
+
+### 182 ###
+SoXipBuilderNode {
+    placement	-0.3 -4.5 1.7 -3.7
+    flags	()
+    autoPanelPos	789 619 0 0
+    node	    DEF Patient_Name SoXipText2 {
+	fields [ SFString string,  ]
+	string	""
+    }
+
+}
+#connect "string@182" "string@183"
+
+### 183 ###
+SoXipBuilderEngine {
+    placement	-2.7 -2.7 -0.0599127 -1.9
+    flags	()
+    autoPanelPos	320 69 0 0
+    engine	    DEF Name SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x10
+	element	0x10
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@183" "output@48"
+
+### 184 ###
+SoXipBuilderNode {
+    placement	0 -3.3 2 -2.5
+    flags	()
+    autoPanelPos	266 66 0 0
+    node	    DEF Patient_ID SoXipText2 {
+	fields [ SFString string,  ]
+	string	""
+    }
+
+}
+#connect "string@184" "string@185"
+
+### 185 ###
+SoXipBuilderEngine {
+    placement	0.6 -3.6 3.24009 -2.8
+    flags	()
+    autoPanelPos	789 464 0 0
+    engine	    DEF PatID SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x10
+	element	0x20
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@185" "output@48"
+
+### 186 ###
+SoXipBuilderNode {
+    placement	0.3 -2.1 2.3 -1.3
+    flags	()
+    autoPanelPos	816 368 0 0
+    node	    DEF Patient_Gender SoXipText2 {
+	fields [ SFString string,  ]
+	string	""
+    }
+
+}
+#connect "string@186" "string@187"
+
+### 187 ###
+SoXipBuilderEngine {
+    placement	0.6 -2.7 3.24009 -1.9
+    flags	()
+    autoPanelPos	455 258 0 0
+    engine	    DEF Gender SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x10
+	element	0x40
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@187" "output@48"
+
+### 188 ###
+SoXipBuilderNode {
+    placement	8.7 10.8 10.7 11.6
+    flags	()
+    autoPanelPos	176 356 0 0
+    node	    Separator {
+    }
+
+}
+#addChild "188" "189 190 193"
+
+### 189 ###
+SoXipBuilderNode {
+    placement	7.8 9.3 9.8 10.1
+    flags	()
+    autoPanelPos	134 170 0 0
+    node	    Translation {
+	translation	-0.95 0.85 0
+    }
+
+}
+
+### 190 ###
+SoXipBuilderNode {
+    placement	10.2 9.3 12.2 10.1
+    flags	()
+    autoPanelPos	714 133 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	"Slice Location: 1"
+    }
+
+}
+#connect "string@190" "output@191"
+
+### 191 ###
+SoXipBuilderEngine {
+    placement	-13.5 4.8 -10.5471 5.6
+    flags	()
+    autoPanelPos	403 69 0 0
+    engine	    SoXipStringConcatenate {
+	inputs [ SFString separator, MFString input0, MFString input1, MFString input2,
+		MFString input3, MFString input4, MFString input5, MFString input6,
+		MFString input7, MFString input8, MFString input9 ]
+	separator	": "
+	input0	"Slice Location"
+	input1	"1"
+	input2	[  ]
+	input3	[  ]
+	input4	[  ]
+	input5	[  ]
+	input6	[  ]
+	input7	[  ]
+	input8	[  ]
+	input9	[  ]
+	outputs [ SFString output ]
+    }
+
+}
+#connect "input1@191" "output@192"
+
+### 192 ###
+SoXipBuilderEngine {
+    placement	-10.2 4.8 -8.2 5.6
+    flags	()
+    autoPanelPos	636 37 0 0
+    engine	    SelectOne {
+	type	"MFInt32"
+	index	0
+	input	1
+    }
+
+}
+#connect "input@192" "od@10"
+
+### 193 ###
+SoXipBuilderNode {
+    placement	12.9 9.3 14.9 10.1
+    flags	()
+    autoPanelPos	901 326 0 0
+    node	    Switch {
+    }
+
+}
+#addChild "193" "194"
+
+### 194 ###
+SoXipBuilderNode {
+    placement	17.4 7.2 19.4 8
+    flags	()
+    autoPanelPos	820 421 0 0
+    node	    SoXipText2 {
+	fields [ SFString string,  ]
+	string	"0"
+    }
+
+}
+#connect "string@194" "output@195"
+
+### 195 ###
+SoXipBuilderEngine {
+    placement	20.1 3.9 22.1 4.7
+    flags	()
+    autoPanelPos	451 237 0 0
+    engine	    DEF WHO_inMM Concatenate {
+	type	"MFInt32"
+	input0	0
+    }
+
+}
+#connect "input0@195" "oc@109"
+
+### 196 ###
+SoXipBuilderNode {
+    placement	-4.2 12.6 -2.2 13.4
+    flags	()
+    autoPanelPos	587 283 0 0
+    node	    Separator {
+    }
+
+}
+#addChild "196" "197 112"
+
+### 197 ###
+SoXipBuilderNode {
+    placement	-5.1 11.1 -2.3 11.9
+    flags	()
+    autoPanelPos	421 62 0 0
+    node	    Separator {
+    }
+
+}
+#addChild "197" "198 199 39 200 201 202"
+
+### 198 ###
+SoXipBuilderNode {
+    placement	-3.9 4.2 -1.9 5
+    flags	()
+    node	    Group {
+    }
+
+}
+#addChild "198" "5 22 17"
+
+### 199 ###
+SoXipBuilderNode {
+    placement	-8.7 9.3 -6.3883 10.1
+    flags	()
+    autoPanelPos	348 152 0 0
+    node	    DEF Examiner_Sagittal SoXipMprExaminer {
+	orientation	LEFT
+	border	TRUE
+	dogEar	TRUE
+	orientationCube	TRUE
+	camera		OrthographicCamera {
+	    position	0.5 0.5 0.5
+	    orientation	0.57735 0.57735 0.57735  2.09439
+	    nearDistance	-0.5
+	    farDistance	0.5
+	    focalDistance	0
+	    height	1
+	}
+
+	complexity		Complexity {
+	    value	0.5
+	    textureQuality	0.5
+	}
+
+	intersectionManip		SoXipMprIntersectionManip {
+	    fields [ SFBool isManipulating, SFBool on, SFEnum mode,  ]
+	    isManipulating	FALSE
+	    on	TRUE
+	    mode	TRANSLATION
+	}
+
+	borderNode		DEF +0 SoXipViewportBorder {
+	    fields [ SFColor activeColor, SFColor inactiveColor,  ]
+	    activeColor	0 1 0
+	    inactiveColor	0 1 0
+	}
+
+	dogEarNode		DEF +1 SoXipDogEar {
+	    fields [  ]
+	}
+
+	orientationNode		DEF +2 SoXipOrientationCube {
+	    fields [  ]
+	}
+
+	borderSwitch		Switch {
+	    whichChild	0
+	    USE +0
+	}
+
+	dogEarSwitch		Switch {
+	    whichChild	0
+	    USE +1
+	}
+
+	orientationSwitch		Switch {
+	    whichChild	0
+	    USE +2
+	}
+
+    }
+
+}
+
+### 200 ###
+SoXipBuilderNode {
+    placement	-5.4 9.3 -2.775 10.1
+    flags	()
+    autoPanelPos	457 506 0 0
+    node	    SoXipCPUMprRender {
+	fields [ SFBool blendOn ]
+	blendOn	TRUE
+    }
+
+}
+#connect "volume@200" "output@12"
+
+### 201 ###
+SoXipBuilderNode {
+    placement	-7.00267 4.8 -4.78663 5.6
+    flags	()
+    autoPanelPos	866 119 0 0
+    node	    SoXipLutColorBar {
+	fields [ SFEnum position, SFVec2f origin, SFVec2f size, SFColor borderColor,
+		SFString bottomLabel, SFString topLabel ]
+	position	LEFT
+	origin	0.02 0.3
+	size	0.03 0.3
+	bottomLabel	"0"
+	topLabel	"4095"
+    }
+
+}
+
+### 202 ###
+SoXipBuilderNode {
+    placement	-1.2 9.3 0.8 10.1
+    flags	()
+    node	    Group {
+    }
+
+}
+#addChild "202" "203 204 205"
+
+### 203 ###
+SoXipBuilderNode {
+    placement	-2.4 5.7 0.31366 6.5
+    flags	()
+    autoPanelPos	571 567 0 0
+    node	    DEF OverlayStyle_Sagittal SoXipOverlayDrawStyle {
+	fields [ MFString label, SFFloat lineWidth,  ]
+	label	"roi"
+	lineWidth	1
+    }
+
+}
+
+### 204 ###
+SoXipBuilderNode {
+    placement	0.6 5.7 2.82026 6.5
+    flags	()
+    autoPanelPos	938 549 0 0
+    node	    DEF OverlayClr_Sagittal SoXipOverlayColor {
+	fields [ MFString label, SFColor color, SFFloat transparency ]
+	label	"roi"
+	color	0.3 0.8 1
+	transparency	0.1
+    }
+
+}
+
+### 205 ###
+SoXipBuilderNode {
+    placement	3.3 5.7 5.3 6.5
+    flags	()
+    autoPanelPos	694 473 0 0
+    node	    SoMaskContour {
+	fields [ MFString shapeLabel, SFEnum orientation, SFMatrix plane, MFVec3f concavePoints,
+		 ]
+	shapeLabel	"roi"
+	orientation	SAGITTAL
+	plane	1.78814e-007 1 8.9407e-008 0
+		2.98023e-008 -5.96047e-008 1 0
+		1 -1.49012e-007 -1.42109e-014 0
+		0.5 0.5 0.5 1
+	concavePoints	[  ]
+    }
+
+}
+#connect "volMask@205" "volMask@58"
+#connect "refModelMatrix@205" "modelMatrix@11"
+#connect "refWidth@205" "width@11"
+#connect "refHeight@205" "height@11"
+#connect "refDepth@205" "depth@11"
+#connect "plane@205" "plane@17"
+
+### 206 ###
+SoXipBuilderNode {
+    placement	-3.6 13.5 -1.6 14.3
+    flags	()
+    autoPanelPos	833 285 0 0
+    node	    Separator {
+    }
+
+}
+#addChild "206" "207 112"
+
+### 207 ###
+SoXipBuilderNode {
+    placement	-5.4 11.7 -2.6 12.5
+    flags	()
+    autoPanelPos	587 134 0 0
+    node	    Separator {
+    }
+
+}
+#addChild "207" "208 209 39 210 211 212"
+
+### 208 ###
+SoXipBuilderNode {
+    placement	-1.5 4.2 0.500003 5
+    flags	()
+    autoPanelPos	345 419 0 0
+    node	    Group {
+    }
+
+}
+#addChild "208" "22 17 5"
+
+### 209 ###
+SoXipBuilderNode {
+    placement	-9.3 9.6 -6.98831 10.4
+    flags	()
+    autoPanelPos	428 58 0 0
+    node	    DEF Examiner_Coronal SoXipMprExaminer {
+	orientation	ANTERIOR
+	mode	PANZOOM
+	border	TRUE
+	dogEar	TRUE
+	orientationCube	TRUE
+	camera		OrthographicCamera {
+	    position	0.5 0.5 0.5
+	    orientation	1 -4.76607e-008 -1.6369e-009  1.5708
+	    nearDistance	-0.5
+	    farDistance	0.5
+	    focalDistance	0
+	    height	1
+	}
+
+	complexity		Complexity {
+	    value	0.5
+	    textureQuality	0.5
+	}
+
+	intersectionManip		SoXipMprIntersectionManip {
+	    fields [ SFBool isManipulating, SFBool on, SFEnum mode,  ]
+	    isManipulating	FALSE
+	    on	TRUE
+	    mode	TRANSLATION
+	}
+
+	borderNode		DEF +0 SoXipViewportBorder {
+	    fields [ SFColor activeColor, SFColor inactiveColor,  ]
+	    activeColor	0 0 1
+	    inactiveColor	0 0 1
+	}
+
+	dogEarNode		DEF +1 SoXipDogEar {
+	    fields [  ]
+	}
+
+	orientationNode		DEF +2 SoXipOrientationCube {
+	    fields [  ]
+	}
+
+	borderSwitch		Switch {
+	    whichChild	0
+	    USE +0
+	}
+
+	dogEarSwitch		Switch {
+	    whichChild	0
+	    USE +1
+	}
+
+	orientationSwitch		Switch {
+	    whichChild	0
+	    USE +2
+	}
+
+    }
+
+}
+
+### 210 ###
+SoXipBuilderNode {
+    placement	-6.89157 9.6 -4.28343 10.4
+    flags	()
+    autoPanelPos	644 511 0 0
+    node	    SoXipCPUMprRender {
+	fields [ SFBool blendOn ]
+	blendOn	TRUE
+    }
+
+}
+#connect "volume@210" "output@12"
+
+### 211 ###
+SoXipBuilderNode {
+    placement	-3.60119 9.6 -1.38277 10.4
+    flags	()
+    autoPanelPos	739 668 0 0
+    node	    SoXipLutColorBar {
+	fields [ SFEnum position, SFVec2f origin, SFVec2f size, SFColor borderColor,
+		SFString bottomLabel, SFString topLabel ]
+	position	LEFT
+	origin	0.02 0.3
+	size	0.03 0.3
+	bottomLabel	"0"
+	topLabel	"4095"
+    }
+
+}
+
+### 212 ###
+SoXipBuilderNode {
+    placement	-0.6 9.6 1.4 10.4
+    flags	()
+    node	    Group {
+    }
+
+}
+#addChild "212" "213 214 215"
+
+### 213 ###
+SoXipBuilderNode {
+    placement	-2.1 6.3 0.61366 7.1
+    flags	()
+    autoPanelPos	571 567 0 0
+    node	    DEF OverlayStyle_Coronal SoXipOverlayDrawStyle {
+	fields [ MFString label, SFFloat lineWidth,  ]
+	label	"roi"
+	lineWidth	1
+    }
+
+}
+
+### 214 ###
+SoXipBuilderNode {
+    placement	0.9 6.3 3.12026 7.1
+    flags	()
+    autoPanelPos	938 549 0 0
+    node	    DEF OverlayClr_Coronal SoXipOverlayColor {
+	fields [ MFString label, SFColor color, SFFloat transparency ]
+	label	"roi"
+	color	0.3 0.8 1
+	transparency	0.1
+    }
+
+}
+
+### 215 ###
+SoXipBuilderNode {
+    placement	3.6 6.3 5.6 7.1
+    flags	()
+    autoPanelPos	348 411 0 0
+    node	    SoMaskContour {
+	fields [ MFString shapeLabel, SFEnum orientation, SFMatrix plane, MFVec3f concavePoints,
+		 ]
+	shapeLabel	"roi"
+	orientation	CORONAL
+	plane	1 -6.50187e-008 2.92721e-008 0
+		-2.9272e-008 1.04575e-006 1 0
+		-6.50187e-008 -1 1.04575e-006 0
+		0.5 0.5 0.5 1
+	concavePoints	[  ]
+    }
+
+}
+#connect "volMask@215" "volMask@58"
+#connect "refModelMatrix@215" "modelMatrix@11"
+#connect "refWidth@215" "width@11"
+#connect "refHeight@215" "height@11"
+#connect "refDepth@215" "depth@11"
+#connect "plane@215" "plane@5"
+
+### 216 ###
+SoXipBuilderNode {
+    placement	7.8 16.5 9.8 17.3
+    flags	()
+    viewPos	486 200 748 491
+    node	    Separator {
+    }
+
+}
+#addChild "216" "113 217 218 219"
+
+### 217 ###
+SoXipBuilderNode {
+    placement	3.3 14.1 5.3 14.9
+    flags	()
+    autoPanelPos	26 149 0 0
+    node	    DEF Examiner_VR SoXipExaminer {
+	perspective	FALSE
+	orientation	ANTERIOR
+	mode	ROTATE
+	border	TRUE
+	rotatePinpoint	TRUE
+	viewBoundingBox	1.95 0 0 0
+		0 1 0 0
+		0 0 1 0
+		-0.95 0 0 1
+	plane	0.792538 0.609767 -0.0082393  0.320577
+	complexity		Complexity {
+	    value	0.5
+	    textureQuality	0.5
+	}
+
+	orthoCamera		DEF +0 OrthographicCamera {
+	    viewportMapping	ADJUST_CAMERA
+	    position	0.552708 -0.685819 0.577952
+	    orientation	-0.999525 -0.0168203 -0.0258329  4.73021
+	    aspectRatio	1
+	    nearDistance	-0
+	    farDistance	2.40884
+	    focalDistance	1.20442
+	    height	2.40884
+	}
+
+	perspectiveCamera		DEF +1 PerspectiveCamera {
+	    viewportMapping	ADJUST_CAMERA
+	    position	1.02931 -0.145061 0.6609
+	    orientation	0.759358 0.490343 0.427714  1.63123
+	    aspectRatio	1
+	    nearDistance	-0
+	    farDistance	2.40884
+	    focalDistance	1.20442
+	    heightAngle	0.785398
+	}
+
+	borderNode		DEF +2 SoXipViewportBorder {
+	    fields [ SFColor activeColor, SFColor inactiveColor,  ]
+	    activeColor	0.7 0.7 0.7
+	    inactiveColor	0.7 0.7 0.7
+	}
+
+	cameraSwitch		Switch {
+	    whichChild	0
+	    USE +0
+	    USE +1
+	}
+
+	borderSwitch		Switch {
+	    whichChild	0
+	    USE +2
+	}
+
+    }
+
+}
+
+### 218 ###
+SoXipBuilderNode {
+    placement	6 14.1 8.59031 14.9
+    flags	()
+    node	    SoXipOrientationCube {
+	fields [  ]
+    }
+
+}
+
+### 219 ###
+SoXipBuilderNode {
+    placement	11.3 14.1 13.7 14.9
+    flags	()
+    viewPos	700 338 385 385
+    node	    Separator {
+    }
+
+}
+#addChild "219" "220 228 235 236 248"
+
+### 220 ###
+SoXipBuilderNode {
+    placement	8.4 11.1 11.2 11.9
+    flags	()
+    node	    Group {
+    }
+
+}
+#addChild "220" "221 222 224 225 226 227"
+
+### 221 ###
+SoXipBuilderNode {
+    placement	5.0158 10.2 7.23398 11
+    flags	()
+    autoPanelPos	242 307 0 0
+    node	    SoXipTextureUnit {
+	fields [ SFBool autoGenerate ]
+	autoGenerate	FALSE
+    }
+
+}
+
+### 222 ###
+SoXipBuilderNode {
+    placement	5.4 9 7.4 9.8
+    flags	()
+    autoPanelPos	1130 202 0 0
+    node	    DEF BVol SoXipTexture {
+	fields [ SFEnum internalFormat, SFVec3f textureSize,  ]
+	internalFormat	LUMINANCE16
+	textureSize	256 256 59
+    }
+
+}
+#connect "image@222" "outputVolume@223"
+
+### 223 ###
+SoXipBuilderEngine {
+    placement	6.6 7.5 9.02827 8.3
+    flags	()
+    autoPanelPos	234 634 0 0
+    engine	    SoResampleVolume {
+	inputs [ SFInt32 factor_z ]
+	factor_z	2
+	outputs [ SoXipSFDataImage outputVolume ]
+    }
+
+}
+#connect "inputVolume@223" "output@12"
+
+### 224 ###
+SoXipBuilderNode {
+    placement	6 7.2 8.95168 8
+    flags	()
+    autoPanelPos	205 166 0 0
+    node	    DEF BLutManip SoXipWindowLevelManip {
+	fields [ SFFloat window, SFFloat level, SFEnum mouse,  ]
+	window	0.311523
+	level	0.373047
+	mouse	BUTTON3
+    }
+
+}
+
+### 225 ###
+SoXipBuilderNode {
+    placement	7.7158 10.2 9.93398 11
+    flags	()
+    autoPanelPos	377 353 0 0
+    node	    SoXipTextureUnit {
+	fields [ SFInt32 textureStage, SFBool autoGenerate ]
+	textureStage	1
+	autoGenerate	FALSE
+    }
+
+}
+
+### 226 ###
+SoXipBuilderNode {
+    placement	9.6 7.2 11.6 8
+    flags	()
+    autoPanelPos	400 410 0 0
+    node	    DEF BLut SoXipLut {
+	fields [ SFShort bitsUsed, SFFloat rampWidth, SFFloat rampCenter, SFFloat alphaFactor,
+		SFFloat slopeCenter, SFColor colorMiddle, SFColor colorTop, MFColor arrayColor,
+		MFFloat arrayAlpha ]
+	bitsUsed	8
+	rampWidth	0.311523
+	rampCenter	0.373047
+	alphaFactor	0.4
+	slopeCenter	0
+	colorMiddle	0.8 0.5 0.3
+	colorTop	0.6 0.6 0.6
+	arrayColor	[  ]
+	arrayAlpha	[  ]
+    }
+
+}
+#connect "rampWidth@226" "window@224"
+#connect "rampCenter@226" "level@224"
+
+### 227 ###
+SoXipBuilderNode {
+    placement	11.7 7.2 13.81 8
+    flags	()
+    autoPanelPos	610 690 0 0
+    node	    SoXipLutTexture {
+	fields [ SoSFVec2s textureSize ]
+	textureSize	256 1
+    }
+
+}
+
+### 228 ###
+SoXipBuilderNode {
+    placement	23.1 11.1 25.9 11.9
+    flags	()
+    node	    Group {
+    }
+
+}
+#addChild "228" "229 230 231 232 233 234"
+
+### 229 ###
+SoXipBuilderNode {
+    placement	19.5 8.7 21.5498 9.5
+    flags	()
+    autoPanelPos	242 307 0 0
+    node	    SoXipTextureUnit {
+	fields [ SFInt32 textureStage, SFBool autoGenerate ]
+	textureStage	2
+	autoGenerate	FALSE
+    }
+
+}
+
+### 230 ###
+SoXipBuilderNode {
+    placement	19.8 7.2 21.8 8
+    flags	()
+    autoPanelPos	1130 202 0 0
+    node	    DEF PVol SoXipTexture {
+	fields [ SFEnum wrapS, SFEnum wrapT, SFEnum wrapR, SFEnum internalFormat,
+		SFVec3f textureSize,  ]
+	wrapS	CLAMP_TO_BORDER
+	wrapT	CLAMP_TO_BORDER
+	wrapR	CLAMP_TO_BORDER
+	internalFormat	LUMINANCE8
+	textureSize	0 0 0
+    }
+
+}
+#connect "image@230" "image@59"
+
+### 231 ###
+SoXipBuilderNode {
+    placement	20.4 5.4 23.4428 6.2
+    flags	()
+    autoPanelPos	953 164 0 0
+    node	    SoXipWindowLevelManip {
+	fields [ SFFloat window, SFFloat level,  ]
+	window	0.433105
+	level	0.952637
+    }
+
+}
+
+### 232 ###
+SoXipBuilderNode {
+    placement	21.9 7.2 23.9498 8
+    flags	()
+    autoPanelPos	228 437 0 0
+    node	    SoXipTextureUnit {
+	fields [ SFInt32 textureStage, SFBool autoGenerate ]
+	textureStage	3
+	autoGenerate	FALSE
+    }
+
+}
+
+### 233 ###
+SoXipBuilderNode {
+    placement	24 5.4 26 6.2
+    flags	()
+    autoPanelPos	1048 140 0 0
+    node	    DEF PLut SoXipLut {
+	fields [ SFShort bitsUsed, SFFloat rampWidth, SFFloat rampCenter, SFFloat slopeCenter,
+		SFColor colorMiddle, MFColor arrayColor, MFFloat arrayAlpha ]
+	bitsUsed	8
+	rampWidth	0.433105
+	rampCenter	0.952637
+	slopeCenter	0
+	colorMiddle	1 1 0
+	arrayColor	[  ]
+	arrayAlpha	[  ]
+    }
+
+}
+#connect "rampWidth@233" "window@231"
+#connect "rampCenter@233" "level@231"
+
+### 234 ###
+SoXipBuilderNode {
+    placement	26.1 5.4 28.21 6.2
+    flags	()
+    autoPanelPos	610 690 0 0
+    node	    SoXipLutTexture {
+	fields [ SoSFVec2s textureSize ]
+	textureSize	256 1
+    }
+
+}
+
+### 235 ###
+SoXipBuilderNode {
+    placement	12.9 11.4 15.1548 12.2
+    flags	()
+    autoPanelPos	787 76 0 0
+    node	    SoXipLoadShaders {
+	fields [ SFString fpFilename,  ]
+	fpFilename	"shader\shader_fp.glsl"
+    }
+
+}
+
+### 236 ###
+SoXipBuilderNode {
+    placement	18.1 12.6 21.7 13.4
+    flags	()
+    node	    Group {
+    }
+
+}
+#addChild "236" "237 238 239 240 241 242 243 247"
+
+### 237 ###
+SoXipBuilderNode {
+    placement	15.9 11.1 17.95 11.9
+    flags	()
+    autoPanelPos	836 30 0 0
+    node	    SoXipUniformInt {
+	fields [ SFString name,  ]
+	name	"vol1"
+    }
+
+}
+#connect "value@237" "textureStage@221"
+
+### 238 ###
+SoXipBuilderNode {
+    placement	16.2 9.6 18.25 10.4
+    flags	()
+    autoPanelPos	836 110 0 0
+    node	    SoXipUniformInt {
+	fields [ SFString name, MFInt32 value ]
+	name	"lut1"
+	value	1
+    }
+
+}
+#connect "value@238" "textureStage@225"
+
+### 239 ###
+SoXipBuilderNode {
+    placement	16.8 8.4 18.85 9.2
+    flags	()
+    autoPanelPos	836 31 0 0
+    node	    SoXipUniformInt {
+	fields [ SFString name, MFInt32 value ]
+	name	"vol2"
+	value	2
+    }
+
+}
+#connect "value@239" "textureStage@229"
+
+### 240 ###
+SoXipBuilderNode {
+    placement	17.4 6.9 19.45 7.7
+    flags	()
+    autoPanelPos	836 110 0 0
+    node	    SoXipUniformInt {
+	fields [ SFString name, MFInt32 value ]
+	name	"lut2"
+	value	3
+    }
+
+}
+#connect "value@240" "textureStage@232"
+
+### 241 ###
+SoXipBuilderNode {
+    placement	19.5 6.9 21.7934 7.7
+    flags	()
+    autoPanelPos	811 614 0 0
+    node	    SoXipUniformFloat {
+	fields [ SFString name, MFFloat value ]
+	name	"iso"
+	value	0.952637
+    }
+
+}
+#connect "value@241" "rampCenter@233"
+
+### 242 ###
+SoXipBuilderNode {
+    placement	19.8 8.4 22.1533 9.2
+    flags	()
+    autoPanelPos	864 581 0 0
+    node	    DEF color SoXipUniformVec4f {
+	fields [ SFString name, SFVec4f value ]
+	name	"color"
+	value	0.1 0.3 0.5 0.5
+    }
+
+}
+
+### 243 ###
+SoXipBuilderNode {
+    placement	20.4 9.6 22.7533 10.4
+    flags	()
+    autoPanelPos	879 172 0 0
+    node	    DEF scale SoXipUniformVec3f {
+	fields [ SFString name, SFVec3f value ]
+	name	"scale"
+	value	1 1 1
+    }
+
+}
+#connect "value@243" "scale@244"
+
+### 244 ###
+SoXipBuilderEngine {
+    placement	15.3 7.5 17.3 8.3
+    flags	()
+    autoPanelPos	435 542 0 0
+    engine	    SoROITransform {
+	inputs [  ]
+	outputs [ SFVec3f scale, SFVec3f translate ]
+    }
+
+}
+#connect "volModelMatrix@244" "modelMatrix@245"
+#connect "roiModelMatrix@244" "modelMatrix@246"
+
+### 245 ###
+SoXipBuilderEngine {
+    placement	12.1223 7.5 14.6047 8.3
+    flags	()
+    autoPanelPos	439 613 0 0
+    engine	    DEF volume SoXipImageAttributes {
+	inputs [  ]
+	outputs [ SFMatrix modelMatrix, SFShort width, SFShort height, SFShort depth,
+		SFShort bitsStored, SFMatrix defaultOrientation, SFShort orthoScanOrientation, SFMatrix orthoOrientation1,
+		SFMatrix orthoOrientation2, SFMatrix orthoOrientation3, SFVec3f defaultCenter ]
+    }
+
+}
+#connect "image@245" "outputVolume@223"
+
+### 246 ###
+SoXipBuilderEngine {
+    placement	12 6.3 14.4824 7.1
+    flags	()
+    autoPanelPos	599 394 0 0
+    engine	    DEF roi SoXipImageAttributes {
+	inputs [  ]
+	outputs [ SFMatrix modelMatrix, SFShort width, SFShort height, SFShort depth,
+		SFShort bitsStored, SFMatrix defaultOrientation, SFShort orthoScanOrientation, SFMatrix orthoOrientation1,
+		SFMatrix orthoOrientation2, SFMatrix orthoOrientation3, SFVec3f defaultCenter ]
+    }
+
+}
+#connect "image@246" "image@59"
+
+### 247 ###
+SoXipBuilderNode {
+    placement	20.7 11.1 23.0533 11.9
+    flags	()
+    autoPanelPos	1027 526 0 0
+    node	    DEF translate SoXipUniformVec3f {
+	fields [ SFString name,  ]
+	name	"translate"
+    }
+
+}
+#connect "value@247" "translate@244"
+
+### 248 ###
+SoXipBuilderNode {
+    placement	15.9 11.4 17.9 12.2
+    flags	()
+    autoPanelPos	719 288 0 0
+    node	    SoXipSlicer {
+	fields [ SFInt32 numSlicesX, SFInt32 numSlicesY, SFInt32 numSlicesZ, SFBool useComplexity,
+		 ]
+	numSlicesX	400
+	numSlicesY	100
+	numSlicesZ	100
+	useComplexity	FALSE
+    }
+
+}
+
+### 249 ###
+SoXipBuilderEngine {
+    placement	3.89868 -4.5 6.37191 -3.7
+    flags	()
+    autoPanelPos	882 604 0 0
+    engine	    SoItkImageFileWriter {
+	inputs [ SFString File,  ]
+	File	"c:\temp\roi.mhd"
+	outputs [  ]
+    }
+
+}
+#connect "Input@249" "roiVolume@62"
+
+### 250 ###
+SoXipBuilderEngine {
+    placement	-2.7 -3.6 -0.0599122 -2.8
+    flags	()
+    autoPanelPos	426 406 0 0
+    engine	    DEF Age SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x10
+	element	0x1010
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@250" "output@48"
+
+### 251 ###
+SoXipBuilderEngine {
+    placement	-2.7 -4.5 -0.0599143 -3.7
+    flags	()
+    autoPanelPos	476 485 0 0
+    engine	    DEF Study_ID SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x20
+	element	0x10
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@251" "output@48"
+
+### 252 ###
+SoXipBuilderEngine {
+    placement	0.6 -4.5 3.24009 -3.7
+    flags	()
+    autoPanelPos	646 373 0 0
+    engine	    DEF Study_UID SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x20
+	element	0xd
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@252" "output@48"
+
+### 253 ###
+SoXipBuilderEngine {
+    placement	-2.7 -5.4 -0.186781 -4.6
+    flags	()
+    autoPanelPos	570 250 0 0
+    engine	    DEF Series_Number SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x20
+	element	0x11
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@253" "output@48"
+
+### 254 ###
+SoXipBuilderEngine {
+    placement	-2.7 -6.3 -0.186781 -5.5
+    flags	()
+    autoPanelPos	509 379 0 0
+    engine	    DEF Volume_Orientation SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x20
+	element	0x37
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@254" "output@48"
+
+### 255 ###
+SoXipBuilderEngine {
+    placement	0.6 -6.3 3.11322 -5.5
+    flags	()
+    autoPanelPos	640 542 0 0
+    engine	    DEF Volume_Position SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x20
+	element	0x32
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@255" "output@48"
+
+### 256 ###
+SoXipBuilderEngine {
+    placement	0.6 -7.2 3.11321 -6.4
+    flags	()
+    autoPanelPos	256 313 0 0
+    engine	    DEF Pixel_Spacing SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x28
+	element	0x30
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@256" "output@48"
+
+### 257 ###
+SoXipBuilderEngine {
+    placement	-2.7 -8.1 -0.186786 -7.3
+    flags	()
+    autoPanelPos	463 312 0 0
+    engine	    DEF Slope SoXipGetDicomString {
+	inputs [ SoXipMFDataDicom dicom, SFUShort group, SFUShort element,  ]
+	dicom	"NULL"
+	group	0x28
+	element	0x1053
+	outputs [ MFString string ]
+    }
+
+}
+#connect "dicom@257" "output@48"
+
+### packages ###
+SoXipBuilderPackage {
+    def	-14
+    placement	-0.6 -7.2 1.4 -6.4
+    name	"DICOM_Attributes"
+    members	[ 73, 74, 75, 175, 183, 185, 187, 250,
+		      251, 252, 253, 254, 255, 256, 257 ]
+    position	0.110022 -5.4 1
+    height	16
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    inputsPlacement	-0.9 -11.7 1.1 -10.9
+    outputs	[  ]
+    outputsPlacement	-0.729959 0.1 1.27004 0.9
+}
+
+SoXipBuilderPackage {
+    def	-13
+    placement	-7.2 -2.1 -5.2 -1.3
+    name	"Dummy"
+    members	[ 163, 164, 166, 168, 169, 170, 171, 173,
+		      174, 176, 178, 179, 181, 182, 184, 186 ]
+    position	-3.95 -5.75 1
+    height	16
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    inputsPlacement	-5.1 -13.2 -3.1 -12.4
+    outputs	163
+    outputsPlacement	-5.4 0.9 -3.4 1.7
+}
+
+SoXipBuilderPackage {
+    def	-12
+    placement	-6.9 -0.6 -4.9 0.2
+    name	"Window_Level"
+    members	[ 153, 154, 155, 156, 157, 158, 159, 160,
+		      161, 162 ]
+    position	-5.87354 4.8 1
+    height	16.8
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    inputsPlacement	-7.5 -2.7 -5.5 -1.9
+    outputs	153
+    outputsPlacement	-7.65 11.5 -5.65 12.3
+}
+
+SoXipBuilderPackage {
+    def	-11
+    placement	-9 -0.6 -7 0.2
+    name	"Text_RightUp"
+    members	[ 143, 144, 145, 146, 147, 148, 149, 150,
+		      151, 152 ]
+    position	-8.1284 8.35 1
+    height	16
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    inputsPlacement	-8.9568 3.5 -6.9568 4.3
+    outputs	143
+    outputsPlacement	-8.9568 12.4 -6.9568 13.2
+}
+
+SoXipBuilderPackage {
+    def	-10
+    placement	-11.1 -0.6 -9.1 0.2
+    name	"Text_LeftButtom"
+    members	[ 122, 123, 124, 125, 126, 127, 128, 129,
+		      130, 131, 132, 133, 134, 135, 136, 137,
+		      138, 139, 140, 141, 142 ]
+    position	-11.806 4.6 1
+    height	16
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    inputsPlacement	-12.7236 -2.5 -10.7236 -1.7
+    outputs	122
+    outputsPlacement	-12.7236 10.9 -10.7236 11.7
+}
+
+SoXipBuilderPackage {
+    def	-9
+    placement	-13.2 -0.6 -11.2 0.2
+    name	"Text_LeftUp"
+    members	[ 113, 114, 115, 116, 117, 118, 119, 120,
+		      121 ]
+    position	-10.8892 -2.45 1
+    height	16
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    inputsPlacement	-11.7879 -7.9 -9.7879 -7.1
+    outputs	113
+    outputsPlacement	-11.7879 2.2 -9.7879 3
+}
+
+SoXipBuilderPackage {
+    def	-8
+    placement	-1.5 2.4 0.5 3.2
+    name	"MPR"
+    members	[ 4, 5, 6, 7, 8, 9, 10, 15,
+		      16, 17, 18, 19, 20, 21, 22, 23,
+		      24, 36, 37, 191, 192, 198, 208 ]
+    position	-6.30179 1.65 1
+    height	16
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    inputsPlacement	-4.2 -4.5 -2.2 -3.7
+    outputs	[ 208, 198, 4 ]
+    outputsPlacement	-3.75 7 -1.75 7.8
+}
+
+SoXipBuilderPackage {
+    def	-7
+    placement	13.5 9.3 15.5 10.1
+    name	"GLSL"
+    members	[ 236, 237, 238, 239, 240, 241, 242, 243,
+		      247 ]
+    position	19.4008 9.8 1
+    height	16
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    inputsPlacement	20.2766 3.5 22.2766 4.3
+    outputs	236
+    outputsPlacement	19.2 15.3 21.2 16.1
+}
+
+SoXipBuilderPackage {
+    def	-6
+    placement	10.2 11.4 12.2 12.2
+    name	"Mask"
+    members	[ 228, 229, 230, 231, 232, 233, 234 ]
+    position	23.84 8.65 1
+    height	16
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    inputsPlacement	22.855 2.6 24.855 3.4
+    outputs	228
+    outputsPlacement	22.855 13.9 24.855 14.7
+}
+
+SoXipBuilderPackage {
+    def	-5
+    placement	6.9 11.4 8.9 12.2
+    name	"Volume"
+    members	[ 220, 221, 222, 224, 225, 226, 227 ]
+    position	9.43995 9.55 1
+    height	16
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    inputsPlacement	8.455 4.4 10.455 5.2
+    outputs	220
+    outputsPlacement	8.455 13.9 10.455 14.7
+}
+
+SoXipBuilderPackage {
+    def	-4
+    placement	5.7 5.4 7.7 6.19999
+    name	"VR"
+    members	[ -7, -6, -5, 216, 217, 218, 219, 223,
+		      235, 244, 245, 246, 248 ]
+    position	9.25 12.7 1
+    height	19.5
+    inputs	216
+    inputsChildIndex	0
+    inputsPlacement	0.6 14.1 2.6 14.9
+    outputs	216
+    outputsPlacement	8.1 18.3 10.1 19.1
+}
+
+SoXipBuilderPackage {
+    def	-3
+    placement	2.7 5.4 4.7 6.2
+    name	"Coronal"
+    members	[ 206, 207, 209, 210, 211, 212, 213, 214,
+		      215 ]
+    position	-2.67208 9.1 1
+    height	16
+    inputs	[ 207, 207, 206 ]
+    inputsChildIndex	[ 0, 2, 1 ]
+    inputsPlacement	-3.9 2.4 -1.9 3.2
+    outputs	206
+    outputsPlacement	-3.6 15 -1.6 15.8
+}
+
+SoXipBuilderPackage {
+    def	-2
+    placement	-0.3 5.4 1.7 6.2
+    name	"Sagittal"
+    members	[ 196, 197, 199, 200, 201, 202, 203, 204,
+		      205 ]
+    position	-1.62207 8.95 1
+    height	16
+    inputs	[ 197, 197, 196 ]
+    inputsChildIndex	[ 0, 2, 1 ]
+    inputsPlacement	-4.8 3.3 -2.8 4.1
+    outputs	196
+    outputsPlacement	-4.2 13.8 -2.2 14.6
+}
+
+SoXipBuilderPackage {
+    def	-1
+    placement	-3.6 5.4 -1.6 6.2
+    name	"Axial"
+    members	[ 2, 3, 25, 26, 28, 29, 30, 31,
+		      32, 33, 34, 35, 38, 53, 54, 55,
+		      56, 57, 58, 81, 82, 83, 84, 85,
+		      86, 87, 88, 89, 90, 92, 93, 94,
+		      95, 96, 97, 98, 99, 100, 101, 102,
+		      103, 104, 105, 106, 107, 108, 109, 110,
+		      111, 177, 180, 188, 189, 190, 193, 194,
+		      195 ]
+    position	8.80625 7.15 1
+    height	19.2152
+    inputs	[ 3, 3, 2 ]
+    inputsChildIndex	[ 0, 2, 1 ]
+    inputsPlacement	-3.9 0.3 -1.9 1.1
+    outputs	2
+    outputsPlacement	2.7 14.1 4.7 14.9
+}
+
+SoXipBuilderPackage {
+    def	0
+    members	[ -14, -13, -12, -11, -10, -9, -8, -4,
+		      -3, -2, -1, 0, 1, 11, 12, 13,
+		      14, 27, 39, 40, 41, 42, 43, 44,
+		      45, 46, 47, 48, 49, 50, 51, 52,
+		      59, 60, 61, 62, 63, 64, 65, 66,
+		      67, 68, 69, 70, 71, 72, 76, 77,
+		      78, 79, 80, 91, 112, 165, 167, 172,
+		      249 ]
+    position	2.0909 0.7 1
+    height	19.9
+    inputs	[  ]
+    inputsChildIndex	[  ]
+    outputs	[  ]
+}
+

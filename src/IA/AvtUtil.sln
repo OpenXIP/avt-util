@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AvtUtil", "AvtUtil.vcproj", "{E105F5B3-E904-4DA3-911D-E20AD0434899}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E105F5B3-E904-4DA3-911D-E20AD0434899}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E105F5B3-E904-4DA3-911D-E20AD0434899}.Debug|Win32.Build.0 = Debug|Win32
+		{E105F5B3-E904-4DA3-911D-E20AD0434899}.Release|Win32.ActiveCfg = Release|Win32
+		{E105F5B3-E904-4DA3-911D-E20AD0434899}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
